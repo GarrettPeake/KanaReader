@@ -1,69 +1,74 @@
-# React + TypeScript + Vite
+# 📚 KanaReader 📚
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+KanaReader is a modern, interactive web application that makes learning Katakana, Hiragana, and Kanji characters engaging and effective. The key feature if using Japanese characters in the context of english to learn the alphabet most effectively.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🎯 Follows Established Learning Principles
 
-## Expanding the ESLint configuration
+- **Progressive Disclosure**: New concepts build on mastered foundations
+- **Contextual Learning**: Characters are practiced within meaningful sentences
+- **Active Recall**: Typing responses (not multiple choice) strengthens memory pathways
+- **Immediate Feedback**: Instant visual and audio confirmation of correct answers
+- **Spaced Repetition**: Reviews are timed for optimal retention
+- **Mixed Content**: Combines character recognition, pronunciation, and contextual sentence practice
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🖊️ Learn using English as context
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Transform sentences by typing English translations for highlighted Japanese characters:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+![Sentence Example](./public/sentence_example.png)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+In the example above you're knowledge of English will help you to piece together that the highlighted character is 'su' as you are learning.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Also mixed in are spaced repetition **Character Recognition** questions testing romanization and translation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+![Romanization Example](./public/romanization_example.png)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 📊 Progress Tracking
+
+No login! Your progress is saved to your browser or you just jump to any level you like.
+
+![Progress Example](./public/progression_example.png)
+
+- Track progress within current level
+- See overall progress across all character sets
+- Jump between Katakana, Hiragana, and Kanji level sets
+
+### 🔊 Pronounciations
+
+Uses in-browser speech synthesis to provide japanese pronounciations
+
+## 🚀 Getting Started
+
+Just visit [kana.gpeake.com](kana.gpeake.com)
+
+### Development Prerequisites
+
+- Node.js (16+ recommended)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/kanakanareader.git
+   cd kanakanareader
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -124,6 +124,13 @@ body {
 @media (max-width: 768px) {
   .input-container {
     margin-bottom: 0.5rem;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 400px;
+    z-index: 1000;
   }
 }
 

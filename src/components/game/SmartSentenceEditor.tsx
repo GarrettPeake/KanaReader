@@ -299,16 +299,28 @@ export function SmartSentenceEditor({
         </div>
       )}
       
-      {/* Hidden input for mobile keyboard */}
+      {/* Visible input for mobile keyboard persistence */}
       <input
         ref={hiddenInputRef}
         type="text"
         style={{
-          position: 'absolute',
-          left: '-9999px',
-          opacity: 0,
-          pointerEvents: 'none'
+          position: 'fixed',
+          bottom: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '300px',
+          maxWidth: 'calc(100% - 2rem)',
+          padding: '0.75rem',
+          fontSize: '1.1rem',
+          background: '#2d3748',
+          color: '#e2e8f0',
+          border: '1px solid #63b3ed',
+          borderRadius: '16px',
+          outline: 'none',
+          textAlign: 'center',
+          zIndex: 1001
         }}
+        placeholder="Type here for keyboard input"
         onChange={(e) => {
           const inputValue = e.target.value;
           if (inputValue && inputValue.length > 0) {

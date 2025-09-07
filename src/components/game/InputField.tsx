@@ -48,6 +48,24 @@ export function InputField() {
     };
   }, []); // Run once on mount
 
+  // Add tap-anywhere-to-focus functionality for mobile
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      // Only focus if not in transitions and if we have an input to focus
+      if (!state.showLevelTransition && !state.showLevelSetTransition && inputRef.current) {
+        e.preventDefault();
+        inputRef.current.focus();
+      }
+    };
+
+    // Add touch event listener to the document body for tap anywhere
+    document.body.addEventListener('touchstart', handleTouchStart, { passive: false });
+
+    return () => {
+      document.body.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [state.showLevelTransition, state.showLevelSetTransition]);
+
   // Update local input when global state changes
   useEffect(() => {
     setLocalInput(state.userInput);

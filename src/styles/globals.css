@@ -10,7 +10,6 @@ body {
   line-height: 1.6;
   color: #e2e8f0;
   background: #2d3748;
-  min-height: 100vh;
 }
 
 @media (max-width: 768px) {
@@ -18,25 +17,18 @@ body {
     height: 100vh;
     overflow: hidden;
   }
-
-  /* Support for mobile keyboards by using visual viewport */
-  .app {
-    height: 100vh;
-    height: 100svh; /* Use small viewport height when supported */
-  }
 }
 
 .app {
-  min-height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   background: #2d3748;
 }
 
 @media (max-width: 768px) {
   .app {
-    height: 100vh;
-    height: 100svh; /* Use small viewport height when supported */
     max-height: 100vh;
     max-height: 100svh;
     overflow: hidden;
@@ -44,18 +36,14 @@ body {
 }
 
 .main-content {
-  flex: 1;
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-bottom: 120px; /* Space for floating footer */
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding-bottom: 80px; /* Reduce footer space on mobile */
-    min-height: 100vh;
-    min-height: 100svh;
     height: auto; /* Changed from fixed height to auto for better keyboard handling */
     max-height: 100svh; /* Prevent overflow */
     overflow: auto; /* Allow scrolling if keyboard takes up space */
@@ -81,7 +69,7 @@ body {
   .game-container {
     padding: 1rem;
     height: auto; /* Changed from 100% to auto for better input positioning */
-    min-height: 60vh; /* Ensure minimum height but allow flexibility */
+    /* min-height: 60vh; Ensure minimum height but allow flexibility */
     overflow: hidden;
   }
 }
@@ -226,6 +214,7 @@ body {
   background: transparent;
   padding: 1rem;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 }
@@ -305,13 +294,8 @@ body {
 }
 
 .footer {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 100%;
   max-width: 600px;
-  background: transparent;
   padding: 1rem;
   z-index: 100;
   pointer-events: none;

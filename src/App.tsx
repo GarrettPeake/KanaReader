@@ -9,6 +9,7 @@ import {
   ErrorBoundary 
 } from './components';
 import { WelcomeScreen } from './components/ui/WelcomeScreen';
+import { VisualViewport } from './components/VisualViewport';
 import { useGameContext } from './hooks/useGameContext';
 import { LEVEL_SETS } from './data';
 import './styles/globals.css';
@@ -39,7 +40,7 @@ function AppContent() {
   // Show loading until we know the progress state
   if (!isLoaded) {
     return (
-      <div className="app">
+      <VisualViewport className="app">
         <div style={{ 
           display: 'flex', 
           alignItems: 'center', 
@@ -49,20 +50,20 @@ function AppContent() {
         }}>
           Loading...
         </div>
-      </div>
+      </VisualViewport>
     );
   }
 
   if (hasNoProgress) {
     return (
-      <div className="app">
+      <VisualViewport className="app">
         <WelcomeScreen onStart={handleStartLearning} />
-      </div>
+      </VisualViewport>
     );
   }
 
   return (
-    <div className="app">
+    <VisualViewport className="app">
       <Header />
       <main className="main-content">
         <MainGame />
@@ -71,7 +72,7 @@ function AppContent() {
         <LevelSetTransition />
       </main>
       <Footer />
-    </div>
+    </VisualViewport>
   );
 }
 

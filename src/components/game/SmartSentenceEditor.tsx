@@ -27,6 +27,7 @@ export function SmartSentenceEditor({
   const [currentReplacementIndex, setCurrentReplacementIndex] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
+  const hiddenInputRef = useRef<HTMLInputElement>(null);
   const { getUnlockedCharacters } = useGameContext();
 
   // Parse the sentence to find replacements
@@ -57,6 +58,13 @@ export function SmartSentenceEditor({
     // Don't re-parse when getUnlockedCharacters changes to avoid resetting user progress
     parseReplacements();
   }, [displayText, originalText]); // Removed getUnlockedCharacters dependency
+
+  // Focus hidden input for mobile keyboard
+  useEffect(() => {
+    if (hiddenInputRef.current && !isCompleted) {
+      hiddenInputRef.current.focus();
+    }
+  }, [currentReplacementIndex, isCompleted, replacements]);
 
   // Handle keyboard input
   useEffect(() => {
@@ -100,6 +108,12 @@ export function SmartSentenceEditor({
     }
 
     setReplacements(newReplacements);
+    
+    // Clear hidden input and maintain focus
+    if (hiddenInputRef.current) {
+      hiddenInputRef.current.value = '';
+      hiddenInputRef.current.focus();
+    }
   };
 
   const handleBackspace = () => {
@@ -284,6 +298,39 @@ export function SmartSentenceEditor({
           {replacements.length}
         </div>
       )}
+      
+      {/* Hidden input for mobile keyboard */}
+      <input
+        ref={hiddenInputRef}
+        type="text"
+        style={{
+          position: 'absolute',
+          left: '-9999px',
+          opacity: 0,
+          pointerEvents: 'none'
+        }}
+        onChange={(e) => {
+          const inputValue = e.target.value;
+          if (inputValue && inputValue.length > 0) {
+            const lastChar = inputValue.slice(-1).toLowerCase();
+            if (/[a-zA-Z]/.test(lastChar)) {
+              handleCharacterInput(lastChar);
+            }
+          }
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSkipReplacement();
+          } else if (e.key === 'Backspace') {
+            e.preventDefault();
+            handleBackspace();
+          }
+        }}
+        autoComplete="off"
+        autoCapitalize="off"
+        spellCheck="false"
+      />
     </div>
   );
 }

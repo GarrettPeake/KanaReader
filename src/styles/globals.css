@@ -12,11 +12,34 @@ body {
   min-height: 100vh;
 }
 
+@media (max-width: 768px) {
+  body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Support for mobile keyboards by using visual viewport */
+  .app {
+    height: 100vh;
+    height: 100svh; /* Use small viewport height when supported */
+  }
+}
+
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: #2d3748;
+}
+
+@media (max-width: 768px) {
+  .app {
+    height: 100vh;
+    height: 100svh; /* Use small viewport height when supported */
+    max-height: 100vh;
+    max-height: 100svh;
+    overflow: hidden;
+  }
 }
 
 .main-content {
@@ -25,6 +48,17 @@ body {
   flex-direction: column;
   position: relative;
   padding-bottom: 120px; /* Space for floating footer */
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: 80px; /* Reduce footer space on mobile */
+    min-height: 100vh;
+    min-height: 100svh;
+    height: 100vh;
+    height: 100svh;
+    overflow: auto; /* Allow scrolling if keyboard takes up space */
+  }
 }
 
 .game-container {
@@ -37,6 +71,14 @@ body {
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    padding: 1rem;
+    height: 100%;
+    overflow: hidden;
+  }
 }
 
 .sentence-display {
@@ -63,10 +105,26 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
 }
 
+@media (max-width: 768px) {
+  .sentence-display {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    min-height: 3rem;
+    flex: 1;
+  }
+}
+
 .input-container {
   width: 100%;
   max-width: 600px;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .input-container {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .text-input {
@@ -82,6 +140,13 @@ body {
     inset -4px -4px 8px rgba(45, 55, 72, 0.8);
   outline: none;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .text-input {
+    padding: 0.75rem;
+    font-size: 1.1rem;
+  }
 }
 
 .text-input:focus {
@@ -167,6 +232,13 @@ body {
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .header {
+    padding: 0.75rem 1rem;
+    min-height: 60px;
+  }
+}
+
 .header h1 {
   color: #e2e8f0;
   font-size: 2.2rem;
@@ -180,6 +252,12 @@ body {
   text-shadow: none;
   letter-spacing: -0.025em;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
 }
 
 @keyframes gradientShift {
@@ -234,6 +312,14 @@ body {
   padding: 1rem;
   z-index: 100;
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    bottom: 10px;
+    padding: 0.5rem;
+    max-width: calc(100% - 1rem);
+  }
 }
 
 .progress-bar {

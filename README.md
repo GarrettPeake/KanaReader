@@ -1,4 +1,4 @@
-# 📚 KanaReader 📚
+# <img src="./public/favicon.svg" alt="drawing" width="25"/> KanaReader
 
 KanaReader is a modern, interactive web application that makes learning Katakana, Hiragana, and Kanji characters engaging and effective. The key feature if using Japanese characters in the context of english to learn the alphabet most effectively.
 

@@ -1,0 +1,17 @@
+{
+  "name": "KanaReader - Japanese Learning App",
+  "short_name": "KanaReader",
+  "description": "Learn Japanese characters with spaced repetition",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2d3748",
+  "theme_color": "#4299e1",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -16,7 +16,18 @@ export function Header() {
       >
         ☰
       </button>
-      <h1>KanaReader</h1>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <img 
+          src="/favicon.svg" 
+          alt="KanaReader Logo" 
+          style={{ 
+            width: '2rem', 
+            height: '2rem',
+            filter: 'none' // Keep original colors
+          }} 
+        />
+        <h1>KanaReader</h1>
+      </div>
       <div style={{ width: '2rem' }} /> {/* Spacer for center alignment */}
     </header>
   );

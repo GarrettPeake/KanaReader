@@ -100,6 +100,16 @@ export function SmartSentenceEditor({
   // Add tap-anywhere-to-focus functionality for mobile
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
+      // Check if the touch target is part of a modal or overlay
+      const target = e.target as Element;
+      if (target && (
+        target.closest('.transition-overlay') ||
+        target.closest('.side-menu') ||
+        target.closest('.menu-overlay')
+      )) {
+        return; // Let normal touch behavior work for modals
+      }
+
       // Only focus if not completed and if we have an input to focus
       if (!isCompleted && hiddenInputRef.current) {
         e.preventDefault();
@@ -107,8 +117,10 @@ export function SmartSentenceEditor({
       }
     };
 
-    // Add touch event listener to the entire document
-    document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    // Only add listener when not completed (sentence questions don't have transition state access)
+    if (!isCompleted) {
+      document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    }
 
     return () => {
       document.removeEventListener('touchstart', handleTouchStart);

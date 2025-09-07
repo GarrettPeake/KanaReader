@@ -51,15 +51,32 @@ export function InputField() {
   // Add tap-anywhere-to-focus functionality for mobile
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
-      // Only focus if not in transitions and if we have an input to focus
-      if (!state.showLevelTransition && !state.showLevelSetTransition && inputRef.current) {
+      // Don't interfere with transitions or modals
+      if (state.showLevelTransition || state.showLevelSetTransition) {
+        return; // Let the normal touch behavior work for transitions
+      }
+
+      // Check if the touch target is part of a modal or overlay
+      const target = e.target as Element;
+      if (target && (
+        target.closest('.transition-overlay') ||
+        target.closest('.side-menu') ||
+        target.closest('.menu-overlay')
+      )) {
+        return; // Let normal touch behavior work for modals
+      }
+
+      // Only focus if we have an input to focus
+      if (inputRef.current) {
         e.preventDefault();
         inputRef.current.focus();
       }
     };
 
-    // Add touch event listener to the entire document for tap anywhere
-    document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    // Only add listener when not in transitions
+    if (!state.showLevelTransition && !state.showLevelSetTransition) {
+      document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    }
 
     return () => {
       document.removeEventListener('touchstart', handleTouchStart);

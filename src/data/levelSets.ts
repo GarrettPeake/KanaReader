@@ -1,5 +1,6 @@
 import type { LevelSet } from '../types';
-import { KATAKANA_MAPPINGS, HIRAGANA_MAPPINGS, KANJI_MAPPINGS } from './characterMappings';
+import { KATAKANA_MAPPINGS, HIRAGANA_MAPPINGS } from './characterMappings';
+import { JLPT_LEVEL_SETS } from './jlptLevelSets';
 
 export const LEVEL_SETS: LevelSet[] = [
   {
@@ -23,11 +24,5 @@ export const LEVEL_SETS: LevelSet[] = [
     explanation: 'Practice your skills with longer sentences using both katakana and hiragana characters randomly.',
     characterMappings: [...KATAKANA_MAPPINGS, ...HIRAGANA_MAPPINGS],
   },
-  {
-    id: 'kanji',
-    name: 'Kanji (Basic)',
-    description: 'Learn basic kanji characters',
-    explanation: 'Kanji are logographic characters representing concepts or words. Start with the most basic ones.',
-    characterMappings: KANJI_MAPPINGS,
-  },
+  ...JLPT_LEVEL_SETS,
 ];

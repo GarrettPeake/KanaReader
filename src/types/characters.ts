@@ -7,7 +7,7 @@ export interface CharacterMapping {
 }
 
 export interface LevelSet {
-  id: 'tutorial' | 'katakana' | 'hiragana' | 'practice' | 'kanji';
+  id: string;
   name: string;
   description: string;
   explanation: string;

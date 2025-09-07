@@ -8,6 +8,7 @@ export function SideMenu() {
   const { state, dispatch } = useGameContext();
   const [activeTab, setActiveTab] = useState(state.currentLevelSetId);
   const [showResetDialog, setShowResetDialog] = useState(false);
+  const [showKanjiDropdown, setShowKanjiDropdown] = useState(false);
 
   useEffect(() => {
     setActiveTab(state.currentLevelSetId);
@@ -85,59 +86,36 @@ export function SideMenu() {
           background: '#2d3748'
         }}>
           <div style={{ padding: '0' }}>
-            {LEVEL_SETS.map((levelSet) => {
+            {/* Basic level sets (non-JLPT kanji) */}
+            {LEVEL_SETS.filter(levelSet => !levelSet.id.startsWith('jlpt_')).map((levelSet) => {
               const isCompleted = levelSet.characterMappings.length === 0 || 
                 levelSet.characterMappings.every(char => state.unlockedCharacters.has(char.id));
               const isActive = activeTab === levelSet.id;
               const isCurrent = levelSet.id === state.currentLevelSetId;
               
-              // Determine if this level set comes before, is current, or is after the current one
-              const levelSetOrder = ['tutorial', 'katakana', 'hiragana', 'practice', 'kanji'];
-              const currentLevelSetIndex = levelSetOrder.indexOf(state.currentLevelSetId);
-              const thisLevelSetIndex = levelSetOrder.indexOf(levelSet.id);
-              
-              // Determine progress state for styling based on position relative to current
-              let progressState;
-              if (thisLevelSetIndex < currentLevelSetIndex || isCompleted) {
-                progressState = 'completed'; // Previous level sets or completed current
-              } else if (isCurrent) {
-                progressState = 'current'; // Currently active level set
-              } else {
-                progressState = 'available'; // All future level sets are available
-              }
-              
               const getProgressStyles = () => {
-                switch (progressState) {
-                  case 'completed':
-                    return {
-                      background: isActive ? 'rgba(99, 179, 237, 0.2)' : 'rgba(104, 211, 145, 0.1)',
-                      color: isActive ? '#63b3ed' : '#68d391',
-                      borderLeft: isActive ? '3px solid #63b3ed' : '3px solid rgba(104, 211, 145, 0.6)',
-                      opacity: 1
-                    };
-                  case 'current':
-                    return {
-                      background: isActive ? 'rgba(99, 179, 237, 0.2)' : 'rgba(99, 179, 237, 0.1)',
-                      color: isActive ? '#63b3ed' : '#63b3ed',
-                      borderLeft: '3px solid #63b3ed',
-                      opacity: 1
-                    };
-                  case 'available':
-                    return {
-                      background: isActive ? 'rgba(99, 179, 237, 0.2)' : 'transparent',
-                      color: isActive ? '#63b3ed' : '#a0aec0',
-                      borderLeft: isActive ? '3px solid #63b3ed' : '3px solid transparent',
-                      opacity: 1,
-                      cursor: 'pointer'
-                    };
-                  default:
-                    return {
-                      background: isActive ? 'rgba(99, 179, 237, 0.2)' : 'transparent',
-                      color: isActive ? '#63b3ed' : '#a0aec0',
-                      borderLeft: isActive ? '3px solid #63b3ed' : '3px solid transparent',
-                      opacity: 1,
-                      cursor: 'pointer'
-                    };
+                if (isCompleted) {
+                  return {
+                    background: isActive ? 'rgba(99, 179, 237, 0.2)' : 'rgba(104, 211, 145, 0.1)',
+                    color: isActive ? '#63b3ed' : '#68d391',
+                    borderLeft: isActive ? '3px solid #63b3ed' : '3px solid rgba(104, 211, 145, 0.6)',
+                    opacity: 1
+                  };
+                } else if (isCurrent) {
+                  return {
+                    background: isActive ? 'rgba(99, 179, 237, 0.2)' : 'rgba(99, 179, 237, 0.1)',
+                    color: isActive ? '#63b3ed' : '#63b3ed',
+                    borderLeft: '3px solid #63b3ed',
+                    opacity: 1
+                  };
+                } else {
+                  return {
+                    background: isActive ? 'rgba(99, 179, 237, 0.2)' : 'transparent',
+                    color: isActive ? '#63b3ed' : '#a0aec0',
+                    borderLeft: isActive ? '3px solid #63b3ed' : '3px solid transparent',
+                    opacity: 1,
+                    cursor: 'pointer'
+                  };
                 }
               };
               
@@ -148,7 +126,6 @@ export function SideMenu() {
                   key={levelSet.id}
                   onClick={() => {
                     setActiveTab(levelSet.id);
-                    // If clicking on a different level set, jump to the first character
                     if (levelSet.id !== state.currentLevelSetId) {
                       dispatch({
                         type: 'JUMP_TO_LEVEL',
@@ -187,23 +164,126 @@ export function SideMenu() {
                   }}
                 >
                   <span>{levelSet.name}</span>
-                  {progressState === 'completed' && (
+                  {isCompleted && (
                     <span style={{ 
                       color: '#68d391', 
                       fontSize: '1.2rem',
                       opacity: 0.8 
                     }}>✓</span>
                   )}
-                  {progressState === 'available' && (
-                    <span style={{ 
-                      color: '#a0aec0', 
-                      fontSize: '1rem',
-                      opacity: 0.8 
-                    }}>→</span>
-                  )}
                 </div>
               );
             })}
+
+            {/* Kanji Level Sets Dropdown */}
+            <div style={{ position: 'relative' }}>
+              <div
+                onClick={() => setShowKanjiDropdown(!showKanjiDropdown)}
+                style={{
+                  padding: '0.75rem 1rem',
+                  borderBottom: '1px solid rgba(74, 85, 104, 0.2)',
+                  background: LEVEL_SETS.some(ls => ls.id.startsWith('jlpt_') && ls.id === state.currentLevelSetId) ? 
+                    'rgba(99, 179, 237, 0.1)' : 'transparent',
+                  color: LEVEL_SETS.some(ls => ls.id.startsWith('jlpt_') && ls.id === state.currentLevelSetId) ? 
+                    '#63b3ed' : '#a0aec0',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  transition: 'all 0.2s ease',
+                  borderLeft: LEVEL_SETS.some(ls => ls.id.startsWith('jlpt_') && ls.id === state.currentLevelSetId) ? 
+                    '3px solid #63b3ed' : '3px solid transparent',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}
+                onMouseEnter={(e) => {
+                  if (!LEVEL_SETS.some(ls => ls.id.startsWith('jlpt_') && ls.id === state.currentLevelSetId)) {
+                    (e.target as HTMLDivElement).style.background = 'rgba(99, 179, 237, 0.1)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!LEVEL_SETS.some(ls => ls.id.startsWith('jlpt_') && ls.id === state.currentLevelSetId)) {
+                    (e.target as HTMLDivElement).style.background = 'transparent';
+                  }
+                }}
+              >
+                <span>Kanji (JLPT Levels)</span>
+                <span style={{ 
+                  fontSize: '0.8rem',
+                  transform: showKanjiDropdown ? 'rotate(90deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease'
+                }}>▶</span>
+              </div>
+
+              {/* Dropdown Menu */}
+              {showKanjiDropdown && (
+                <div style={{
+                  background: '#1a202c',
+                  borderLeft: '3px solid #63b3ed',
+                  borderBottom: '1px solid rgba(74, 85, 104, 0.2)',
+                  maxHeight: '300px',
+                  overflowY: 'auto'
+                }}>
+                  {LEVEL_SETS.filter(levelSet => levelSet.id.startsWith('jlpt_')).map((levelSet) => {
+                    const isCompleted = levelSet.characterMappings.length === 0 || 
+                      levelSet.characterMappings.every(char => state.unlockedCharacters.has(char.id));
+                    const isActive = activeTab === levelSet.id;
+                    const isCurrent = levelSet.id === state.currentLevelSetId;
+
+                    return (
+                      <div
+                        key={levelSet.id}
+                        onClick={() => {
+                          setActiveTab(levelSet.id);
+                          if (levelSet.id !== state.currentLevelSetId) {
+                            dispatch({
+                              type: 'JUMP_TO_LEVEL',
+                              payload: {
+                                levelSetId: levelSet.id,
+                                characterIndex: 0
+                              }
+                            });
+                            closeMenu();
+                          }
+                          setShowKanjiDropdown(false);
+                        }}
+                        style={{
+                          padding: '0.5rem 2rem',
+                          background: isCurrent ? 'rgba(99, 179, 237, 0.2)' : 
+                                     isActive ? 'rgba(99, 179, 237, 0.1)' : 'transparent',
+                          color: isCurrent ? '#63b3ed' : isActive ? '#63b3ed' : '#a0aec0',
+                          cursor: 'pointer',
+                          fontSize: '0.85rem',
+                          transition: 'all 0.2s ease',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          borderLeft: isCurrent ? '2px solid #63b3ed' : '2px solid transparent'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isActive) {
+                            (e.target as HTMLDivElement).style.background = 'rgba(99, 179, 237, 0.05)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isActive) {
+                            (e.target as HTMLDivElement).style.background = 'transparent';
+                          }
+                        }}
+                      >
+                        <span>{levelSet.name}</span>
+                        {isCompleted && (
+                          <span style={{ 
+                            color: '#68d391', 
+                            fontSize: '1rem',
+                            opacity: 0.8 
+                          }}>✓</span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

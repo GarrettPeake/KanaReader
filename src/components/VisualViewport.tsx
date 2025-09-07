@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, type JSX } from "react";
 
 interface VisualViewportProps {
   as?: keyof JSX.IntrinsicElements;
   children: React.ReactNode;
   style?: React.CSSProperties;
+  className?: string;
   [key: string]: any;
 }
 
@@ -13,9 +14,9 @@ export const VisualViewport: React.FC<VisualViewportProps> = ({
   style = {},
   ...props
 }) => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<any>(null);
 
-  const [viewport, setViewport] = useState({
+  const [viewport, setViewport] = useState<React.CSSProperties>({
     height: "100vh",
     width: "100vw",
   });
@@ -41,16 +42,18 @@ export const VisualViewport: React.FC<VisualViewportProps> = ({
     ) {
       updateViewport();
 
-      window.visualViewport.addEventListener("resize", updateViewport);
+      window?.visualViewport?.addEventListener("resize", updateViewport);
 
       return () =>
-        window.visualViewport.removeEventListener("resize", updateViewport);
+        window?.visualViewport?.removeEventListener("resize", updateViewport);
     }
   }, []);
 
+  const ElementComponent = Element as any;
+  
   return (
-    <Element ref={ref} style={{ ...style, ...viewport }} {...props}>
+    <ElementComponent ref={ref} style={{ ...style, ...viewport }} {...props}>
       {children}
-    </Element>
+    </ElementComponent>
   );
 };

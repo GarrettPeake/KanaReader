@@ -58,11 +58,11 @@ export function InputField() {
       }
     };
 
-    // Add touch event listener to the document body for tap anywhere
-    document.body.addEventListener('touchstart', handleTouchStart, { passive: false });
+    // Add touch event listener to the entire document for tap anywhere
+    document.addEventListener('touchstart', handleTouchStart, { passive: false });
 
     return () => {
-      document.body.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchstart', handleTouchStart);
     };
   }, [state.showLevelTransition, state.showLevelSetTransition]);
 

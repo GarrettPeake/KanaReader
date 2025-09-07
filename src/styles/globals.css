@@ -5,7 +5,8 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
   line-height: 1.6;
   color: #e2e8f0;
   background: #2d3748;
@@ -17,7 +18,7 @@ body {
     height: 100vh;
     overflow: hidden;
   }
-  
+
   /* Support for mobile keyboards by using visual viewport */
   .app {
     height: 100vh;
@@ -55,9 +56,12 @@ body {
     padding-bottom: 80px; /* Reduce footer space on mobile */
     min-height: 100vh;
     min-height: 100svh;
-    height: 100vh;
-    height: 100svh;
+    height: auto; /* Changed from fixed height to auto for better keyboard handling */
+    max-height: 100svh; /* Prevent overflow */
     overflow: auto; /* Allow scrolling if keyboard takes up space */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to top instead of center */
   }
 }
 
@@ -76,7 +80,8 @@ body {
 @media (max-width: 768px) {
   .game-container {
     padding: 1rem;
-    height: 100%;
+    height: auto; /* Changed from 100% to auto for better input positioning */
+    min-height: 60vh; /* Ensure minimum height but allow flexibility */
     overflow: hidden;
   }
 }
@@ -102,7 +107,8 @@ body {
   white-space: normal;
   color: #e2e8f0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -111,7 +117,7 @@ body {
     margin-bottom: 1rem;
     padding: 1rem;
     min-height: 3rem;
-    flex: 1;
+    flex-shrink: 1;
   }
 }
 
@@ -135,8 +141,7 @@ body {
   color: #e2e8f0;
   border: 1px solid rgba(74, 85, 104, 0.3);
   border-radius: 16px;
-  box-shadow: 
-    inset 4px 4px 8px rgba(20, 24, 35, 0.6),
+  box-shadow: inset 4px 4px 8px rgba(20, 24, 35, 0.6),
     inset -4px -4px 8px rgba(45, 55, 72, 0.8);
   outline: none;
   transition: all 0.3s ease;
@@ -151,8 +156,7 @@ body {
 
 .text-input:focus {
   border-color: rgba(74, 85, 104, 0.3);
-  box-shadow: 
-    inset 4px 4px 8px rgba(20, 24, 35, 0.6),
+  box-shadow: inset 4px 4px 8px rgba(20, 24, 35, 0.6),
     inset -4px -4px 8px rgba(45, 55, 72, 0.8);
   outline: none;
 }
@@ -169,8 +173,7 @@ body {
   background: linear-gradient(135deg, #22543d 0%, #1a202c 100%);
   color: #68d391;
   border: 1px solid rgba(104, 211, 145, 0.3);
-  box-shadow: 
-    inset 3px 3px 6px rgba(20, 24, 35, 0.6),
+  box-shadow: inset 3px 3px 6px rgba(20, 24, 35, 0.6),
     inset -3px -3px 6px rgba(45, 55, 72, 0.8);
 }
 
@@ -178,8 +181,7 @@ body {
   background: linear-gradient(135deg, #742a2a 0%, #1a202c 100%);
   color: #fc8181;
   border: 1px solid rgba(252, 129, 129, 0.3);
-  box-shadow: 
-    inset 3px 3px 6px rgba(20, 24, 35, 0.6),
+  box-shadow: inset 3px 3px 6px rgba(20, 24, 35, 0.6),
     inset -3px -3px 6px rgba(45, 55, 72, 0.8);
 }
 
@@ -187,8 +189,7 @@ body {
   background: linear-gradient(135deg, #2a4365 0%, #1a202c 100%);
   color: #63b3ed;
   border: 1px solid rgba(99, 179, 237, 0.3);
-  box-shadow: 
-    inset 3px 3px 6px rgba(20, 24, 35, 0.6),
+  box-shadow: inset 3px 3px 6px rgba(20, 24, 35, 0.6),
     inset -3px -3px 6px rgba(45, 55, 72, 0.8);
 }
 
@@ -200,8 +201,7 @@ body {
   border-radius: 16px;
   cursor: pointer;
   font-size: 1rem;
-  box-shadow: 
-    4px 4px 8px rgba(20, 24, 35, 0.6),
+  box-shadow: 4px 4px 8px rgba(20, 24, 35, 0.6),
     -4px -4px 8px rgba(74, 85, 104, 0.3);
   transition: all 0.3s ease;
 }
@@ -209,8 +209,7 @@ body {
 .btn:hover {
   background: linear-gradient(135deg, #63b3ed 0%, #4299e1 100%);
   transform: translateY(-1px);
-  box-shadow: 
-    6px 6px 12px rgba(20, 24, 35, 0.7),
+  box-shadow: 6px 6px 12px rgba(20, 24, 35, 0.7),
     -6px -6px 12px rgba(74, 85, 104, 0.4);
 }
 
@@ -219,8 +218,7 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
-  box-shadow: 
-    inset 2px 2px 4px rgba(20, 24, 35, 0.6),
+  box-shadow: inset 2px 2px 4px rgba(20, 24, 35, 0.6),
     inset -2px -2px 4px rgba(45, 55, 72, 0.8);
 }
 
@@ -261,12 +259,17 @@ body {
 }
 
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .header h1::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -348,8 +351,7 @@ body {
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  box-shadow: 
-    inset 3px 3px 6px rgba(20, 24, 35, 0.8),
+  box-shadow: inset 3px 3px 6px rgba(20, 24, 35, 0.8),
     inset -3px -3px 6px rgba(45, 55, 72, 0.6);
   border: 1px solid rgba(74, 85, 104, 0.2);
 }
@@ -359,8 +361,7 @@ body {
   background: linear-gradient(90deg, #63b3ed 0%, #4299e1 50%, #3182ce 100%);
   border-radius: 16px;
   transition: width 0.3s ease;
-  box-shadow: 
-    0 0 12px rgba(99, 179, 237, 0.5),
+  box-shadow: 0 0 12px rgba(99, 179, 237, 0.5),
     inset 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
@@ -425,7 +426,11 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(26, 32, 44, 0.95) 0%,
+    rgba(45, 55, 72, 0.95) 100%
+  );
   backdrop-filter: blur(8px);
   color: #e2e8f0;
   display: flex;
@@ -440,9 +445,7 @@ body {
   font-size: 6rem;
   margin-bottom: 1rem;
   color: #63b3ed;
-  text-shadow: 
-    0 0 20px rgba(99, 179, 237, 0.6),
-    4px 4px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 20px rgba(99, 179, 237, 0.6), 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .transition-info {
@@ -463,9 +466,7 @@ body {
   font-size: 6rem;
   color: #68d391;
   margin-bottom: 2rem;
-  text-shadow: 
-    0 0 20px rgba(104, 211, 145, 0.6),
-    4px 4px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 20px rgba(104, 211, 145, 0.6), 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Additional neumorphic styles for side menu hover effects */
@@ -476,7 +477,6 @@ body {
 .side-menu .reset-button:hover {
   background: linear-gradient(135deg, #fc8181 0%, #e53e3e 100%) !important;
   transform: translateY(-1px);
-  box-shadow: 
-    4px 4px 8px rgba(20, 24, 35, 0.7),
+  box-shadow: 4px 4px 8px rgba(20, 24, 35, 0.7),
     -4px -4px 8px rgba(74, 85, 104, 0.4) !important;
 }

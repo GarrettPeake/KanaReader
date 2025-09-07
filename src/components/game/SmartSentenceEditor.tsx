@@ -107,15 +107,11 @@ export function SmartSentenceEditor({
       }
     };
 
-    // Add touch event listener to the editor container
-    if (editorRef.current) {
-      editorRef.current.addEventListener('touchstart', handleTouchStart, { passive: false });
-    }
+    // Add touch event listener to the entire document
+    document.addEventListener('touchstart', handleTouchStart, { passive: false });
 
     return () => {
-      if (editorRef.current) {
-        editorRef.current.removeEventListener('touchstart', handleTouchStart);
-      }
+      document.removeEventListener('touchstart', handleTouchStart);
     };
   }, [isCompleted]);
 
@@ -311,13 +307,13 @@ export function SmartSentenceEditor({
         alignItems: "center",
         justifyContent: "center",
         minHeight: "8rem", // Increased to provide space for instruction text
-        padding: "2rem",
+        padding: window.innerWidth <= 768 ? "1rem" : "2rem", // Reduced padding on mobile
       }}
       tabIndex={0}
     >
       <div
         style={{
-          fontSize: "2rem",
+          fontSize: window.innerWidth <= 768 ? "1.5rem" : "2rem", // Smaller font on mobile
           textAlign: "center",
           wordWrap: "normal",
           wordBreak: "keep-all",
@@ -332,7 +328,7 @@ export function SmartSentenceEditor({
           textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
           fontFamily:
             "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Hiragana Sans', 'Yu Gothic', 'Meiryo', sans-serif",
-          marginBottom: "1rem", // Space between sentence and instruction
+          marginBottom: window.innerWidth <= 768 ? "0.5rem" : "1rem", // Reduced margin on mobile
         }}
       >
         {renderSentence()}

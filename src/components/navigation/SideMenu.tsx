@@ -84,12 +84,12 @@ export function SideMenu() {
           <div style={{ padding: "0" }}>
             {/* Basic level sets (non-JLPT kanji) */}
             {LEVEL_SETS.filter(
-              (levelSet) => !levelSet.id.startsWith("jlpt_")
+              (levelSet) => !levelSet.id.startsWith("jlpt_"),
             ).map((levelSet) => {
               const isCompleted =
                 levelSet.characterMappings.length === 0 ||
                 levelSet.characterMappings.every((char) =>
-                  state.unlockedCharacters.has(char.id)
+                  state.unlockedCharacters.has(char.id),
                 );
               const isActive = activeTab === levelSet.id;
               const isCurrent = levelSet.id === state.currentLevelSetId;
@@ -202,14 +202,14 @@ export function SideMenu() {
                   background: LEVEL_SETS.some(
                     (ls) =>
                       ls.id.startsWith("jlpt_") &&
-                      ls.id === state.currentLevelSetId
+                      ls.id === state.currentLevelSetId,
                   )
                     ? "rgba(99, 179, 237, 0.1)"
                     : "transparent",
                   color: LEVEL_SETS.some(
                     (ls) =>
                       ls.id.startsWith("jlpt_") &&
-                      ls.id === state.currentLevelSetId
+                      ls.id === state.currentLevelSetId,
                   )
                     ? "#63b3ed"
                     : "#a0aec0",
@@ -219,7 +219,7 @@ export function SideMenu() {
                   borderLeft: LEVEL_SETS.some(
                     (ls) =>
                       ls.id.startsWith("jlpt_") &&
-                      ls.id === state.currentLevelSetId
+                      ls.id === state.currentLevelSetId,
                   )
                     ? "3px solid #63b3ed"
                     : "3px solid transparent",
@@ -232,7 +232,7 @@ export function SideMenu() {
                     !LEVEL_SETS.some(
                       (ls) =>
                         ls.id.startsWith("jlpt_") &&
-                        ls.id === state.currentLevelSetId
+                        ls.id === state.currentLevelSetId,
                     )
                   ) {
                     (e.target as HTMLDivElement).style.background =
@@ -244,7 +244,7 @@ export function SideMenu() {
                     !LEVEL_SETS.some(
                       (ls) =>
                         ls.id.startsWith("jlpt_") &&
-                        ls.id === state.currentLevelSetId
+                        ls.id === state.currentLevelSetId,
                     )
                   ) {
                     (e.target as HTMLDivElement).style.background =
@@ -278,12 +278,12 @@ export function SideMenu() {
                   }}
                 >
                   {LEVEL_SETS.filter((levelSet) =>
-                    levelSet.id.startsWith("jlpt_")
+                    levelSet.id.startsWith("jlpt_"),
                   ).map((levelSet) => {
                     const isCompleted =
                       levelSet.characterMappings.length === 0 ||
                       levelSet.characterMappings.every((char) =>
-                        state.unlockedCharacters.has(char.id)
+                        state.unlockedCharacters.has(char.id),
                       );
                     const isActive = activeTab === levelSet.id;
                     const isCurrent = levelSet.id === state.currentLevelSetId;
@@ -310,13 +310,13 @@ export function SideMenu() {
                           background: isCurrent
                             ? "rgba(99, 179, 237, 0.2)"
                             : isActive
-                            ? "rgba(99, 179, 237, 0.1)"
-                            : "transparent",
+                              ? "rgba(99, 179, 237, 0.1)"
+                              : "transparent",
                           color: isCurrent
                             ? "#63b3ed"
                             : isActive
-                            ? "#63b3ed"
-                            : "#a0aec0",
+                              ? "#63b3ed"
+                              : "#a0aec0",
                           cursor: "pointer",
                           fontSize: "0.85rem",
                           transition: "all 0.2s ease",

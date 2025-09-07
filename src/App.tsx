@@ -1,39 +1,40 @@
-import { GameProvider } from './context';
-import { 
-  MainGame, 
-  Header, 
-  Footer, 
-  SideMenu, 
-  LevelTransition, 
+import { GameProvider } from "./context";
+import {
+  MainGame,
+  Header,
+  Footer,
+  SideMenu,
+  LevelTransition,
   LevelSetTransition,
-  ErrorBoundary 
-} from './components';
-import { WelcomeScreen } from './components/ui/WelcomeScreen';
-import { VisualViewport } from './components/VisualViewport';
-import { useGameContext } from './hooks/useGameContext';
-import { LEVEL_SETS } from './data';
-import './styles/globals.css';
+  ErrorBoundary,
+} from "./components";
+import { WelcomeScreen } from "./components/ui/WelcomeScreen";
+import { VisualViewport } from "./components/VisualViewport";
+import { useGameContext } from "./hooks/useGameContext";
+import { LEVEL_SETS } from "./data";
+import "./styles/globals.css";
 
 function AppContent() {
   const { state, dispatch, isLoaded } = useGameContext();
-  
-  // Check if user has no progress (first time visitor)  
+
+  // Check if user has no progress (first time visitor)
   // Only show welcome screen if we're loaded and certain there's no progress
-  const hasNoProgress = isLoaded && 
-                        state.currentLevelSetId === '' && 
-                        state.unlockedCharacters.size === 0 && 
-                        state.completedLevels.size === 0;
+  const hasNoProgress =
+    isLoaded &&
+    state.currentLevelSetId === "" &&
+    state.unlockedCharacters.size === 0 &&
+    state.completedLevels.size === 0;
 
   const handleStartLearning = () => {
     // Start with the first level set (katakana)
-    const katakanaLevelSet = LEVEL_SETS.find(set => set.id === 'katakana');
+    const katakanaLevelSet = LEVEL_SETS.find((set) => set.id === "katakana");
     const firstCharacter = katakanaLevelSet?.characterMappings[0];
-    dispatch({ 
-      type: 'ADVANCE_LEVEL_SET', 
-      payload: { 
-        levelSetId: 'katakana',
-        firstCharacter: firstCharacter 
-      } 
+    dispatch({
+      type: "ADVANCE_LEVEL_SET",
+      payload: {
+        levelSetId: "katakana",
+        firstCharacter: firstCharacter,
+      },
     });
   };
 
@@ -41,13 +42,15 @@ function AppContent() {
   if (!isLoaded) {
     return (
       <VisualViewport className="app">
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          minHeight: '100vh',
-          color: '#e2e8f0'
-        }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "100vh",
+            color: "#e2e8f0",
+          }}
+        >
           Loading...
         </div>
       </VisualViewport>

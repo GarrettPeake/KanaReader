@@ -6,7 +6,7 @@ export class SentenceSelector {
     sentenceBank: SentenceBank,
     targetCharacter: CharacterMapping,
     count: number,
-    preferredLength: "short" | "medium" | "long" = "short"
+    preferredLength: "short" | "medium" | "long" = "short",
   ): string[] {
     // Get sentences of the preferred length
     const candidateSentences = sentenceBank[preferredLength];
@@ -18,14 +18,14 @@ export class SentenceSelector {
         sentence,
         targetCharacter.romanizations,
         isKanji,
-        targetCharacter.translations
-      )
+        targetCharacter.translations,
+      ),
     );
 
     // If we don't have enough valid sentences, try other lengths
     if (validSentences.length < count) {
       const otherLengths = (["short", "medium", "long"] as const).filter(
-        (l) => l !== preferredLength
+        (l) => l !== preferredLength,
       );
 
       for (const length of otherLengths) {
@@ -35,8 +35,8 @@ export class SentenceSelector {
               sentence,
               targetCharacter.romanizations,
               isKanji,
-              targetCharacter.translations
-            ) && !validSentences.includes(sentence)
+              targetCharacter.translations,
+            ) && !validSentences.includes(sentence),
         );
         validSentences.push(...additionalSentences);
 

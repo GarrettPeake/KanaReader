@@ -1,1 +1,1 @@
-export * from './useGameContext';
+export * from "./useGameContext";

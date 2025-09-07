@@ -1,10 +1,10 @@
-import type { SentenceBank } from '../types';
+import type { SentenceBank } from "../types";
 
 export const SENTENCE_BANK: SentenceBank = {
   short: [
     // A sentences
     "I have a cat",
-    "She has a dog", 
+    "She has a dog",
     "Take a break",
     "Make a plan",
     "What a day",
@@ -23,8 +23,8 @@ export const SENTENCE_BANK: SentenceBank = {
     "Make a cake",
     "Play a game",
     "Visit a park",
-    
-    // I sentences  
+
+    // I sentences
     "I like tea",
     "I can swim",
     "I am tired",
@@ -45,10 +45,10 @@ export const SENTENCE_BANK: SentenceBank = {
     "I sing songs",
     "I dance well",
     "I study hard",
-    
+
     // U sentences
     "The sun is up",
-    "Put it under there", 
+    "Put it under there",
     "Just use this",
     "Cup of water",
     "Turn up the music",
@@ -67,7 +67,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Butter on toast",
     "Summer is coming",
     "Thunder in the sky",
-    
+
     // E sentences
     "We like pets",
     "The red pen",
@@ -89,12 +89,12 @@ export const SENTENCE_BANK: SentenceBank = {
     "Welcome to our home",
     "Check your pocket",
     "Sleep well tonight",
-    
+
     // O sentences
     "Go to work",
     "Open the door",
     "Hold on tight",
-    "Roll over there", 
+    "Roll over there",
     "Show me how",
     "More hot coffee",
     "Hope for the best",
@@ -111,7 +111,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Home sweet home",
     "Code on computer",
     "Store more items",
-    
+
     // KA/CA sentences
     "Take care now",
     "Make a cake",
@@ -133,7 +133,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Pick my favorite",
     "Duck in water",
     "Kick the ball",
-    
+
     // KI sentences
     "Keep it simple",
     "Pick it up",
@@ -155,7 +155,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "King of the hill",
     "Ring the bell",
     "Bring me coffee",
-    
+
     // KU sentences
     "Look up there",
     "Book your trip",
@@ -177,7 +177,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Luck be lady",
     "Muck and mud",
     "Stuck in traffic",
-    
+
     // KE sentences
     "Keep me safe",
     "Make me smile",
@@ -199,7 +199,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Provoke no one",
     "Like me please",
     "Fake jewelry store",
-    
+
     // KO sentences
     "Go back home",
     "So very cold",
@@ -221,7 +221,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Microscope shows tiny",
     "Telescope shows stars",
     "Stethoscope hears heart",
-    
+
     // SA sentences
     "Say hello please",
     "Sand on beach",
@@ -243,7 +243,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Saga continues on",
     "Sage wise advice",
     "Santa comes tonight",
-    
+
     // SHI sentences
     "She likes music",
     "Shine bright star",
@@ -265,7 +265,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Shock wave hit",
     "Shoe fits well",
     "Shop for groceries",
-    
+
     // SU sentences
     "Sun shines bright",
     "Such a day",
@@ -287,7 +287,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Supreme court rules",
     "Surface looks smooth",
     "Surgery went well",
-    
+
     // SE sentences
     "See you later",
     "Send me message",
@@ -309,7 +309,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Select best option",
     "Senate votes today",
     "Senior citizen discount",
-    
+
     // SO sentences
     "So very tired",
     "Soap and water",
@@ -331,7 +331,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Someone knocks door",
     "Song sounds beautiful",
     "Soon we leave",
-    
+
     // TA sentences
     "Take me there",
     "Talk to me",
@@ -353,7 +353,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Test your knowledge",
     "Thank you much",
     "Theater play begins",
-    
+
     // CHI sentences
     "Child loves candy",
     "Chicken soup hot",
@@ -375,7 +375,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Coach teaches well",
     "Coast is clear",
     "Code works perfectly",
-    
+
     // TSU sentences
     "Tsunami wave big",
     "Tuesday is busy",
@@ -387,7 +387,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Twin brother sister",
     "Twist the cap",
     "Type your message",
-    
+
     // TE sentences
     "Tell me more",
     "Test your skills",
@@ -409,7 +409,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Therapy session helpful",
     "Thermometer reads high",
     "Ticket costs money",
-    
+
     // TO sentences
     "To be continued",
     "Top of mountain",
@@ -431,7 +431,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Type on keyboard",
     "Total amount due",
     "Tournament begins today",
-    
+
     // NA sentences
     "Name your price",
     "Nation stands united",
@@ -453,7 +453,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "News report says",
     "Next week vacation",
     "Nice weather today",
-    
+
     // NI sentences
     "Nice to meet",
     "Night sky stars",
@@ -469,7 +469,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Number one priority",
     "Nurse helps patients",
     "Nutrition facts label",
-    
+
     // NU sentences
     "Nuclear power plant",
     "Nude art museum",
@@ -478,7 +478,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Nursery rhyme song",
     "Nut and bolt",
     "Nutrition label reading",
-    
+
     // NE sentences
     "Never say never",
     "Next door neighbor",
@@ -492,7 +492,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Network television show",
     "Neutral ground meeting",
     "Nevertheless we continue",
-    
+
     // NO sentences
     "No problem here",
     "North pole cold",
@@ -508,7 +508,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Novel idea works",
     "Nowhere to go",
     "Number one song",
-    
+
     // HA sentences
     "Have a day",
     "Happy birthday today",
@@ -530,7 +530,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "High mountain peak",
     "History repeats itself",
     "Home sweet home",
-    
+
     // HI sentences
     "Hi there friend",
     "Hide and seek",
@@ -552,8 +552,8 @@ export const SENTENCE_BANK: SentenceBank = {
     "Hospital emergency room",
     "Hotel room key",
     "House for sale",
-    
-    // FU sentences  
+
+    // FU sentences
     "Fun at park",
     "Full moon bright",
     "Future looks bright",
@@ -564,7 +564,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Fundamental truth revealed",
     "Furniture store sale",
     "Fury of storm",
-    
+
     // HE sentences
     "He likes sports",
     "Help me please",
@@ -586,7 +586,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "High expectations met",
     "Highway traffic jam",
     "Hill climbing exercise",
-    
+
     // HO sentences
     "Hope for best",
     "Home sweet home",
@@ -608,7 +608,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Holiday vacation time",
     "Hollow sound echoes",
     "Homework assignment due",
-    
+
     // MA sentences
     "Make me happy",
     "Many good options",
@@ -630,7 +630,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Method works well",
     "Middle ground found",
     "Midnight strikes twelve",
-    
+
     // MI sentences
     "Mind your business",
     "Milk and cookies",
@@ -652,7 +652,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Morning coffee hot",
     "Mother knows best",
     "Mountain peak high",
-    
+
     // MU sentences
     "Much ado nothing",
     "Mud puddle deep",
@@ -664,7 +664,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Must try harder",
     "Mutual respect needed",
     "Mystery solved finally",
-    
+
     // ME sentences
     "Meet me halfway",
     "Memory lane walk",
@@ -686,7 +686,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Minor league baseball",
     "Minute detail matters",
     "Mirror reflection shows",
-    
+
     // MO sentences
     "More coffee please",
     "Morning sun rises",
@@ -708,7 +708,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Monument stands tall",
     "Mood changes quickly",
     "Mortgage payment due",
-    
+
     // YA sentences
     "Yard sale today",
     "Year passes quickly",
@@ -720,11 +720,11 @@ export const SENTENCE_BANK: SentenceBank = {
     "Your turn now",
     "Yawn means tired",
     "Yacht sails away",
-    
+
     // YU sentences
     "Yummy food here",
     "Yugoslavia no longer",
-    
+
     // YO sentences
     "You are welcome",
     "Young people today",
@@ -733,7 +733,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Yesterday feels distant",
     "York city busy",
     "Youth hostel cheap",
-    
+
     // RA sentences
     "Rain falls down",
     "Race against time",
@@ -755,7 +755,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Recipe calls for",
     "Record breaking performance",
     "Red rose blooms",
-    
+
     // RI sentences
     "Rice and beans",
     "Rich chocolate cake",
@@ -777,7 +777,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Ruby red lips",
     "Rule of thumb",
     "Run for cover",
-    
+
     // RU sentences
     "Run very fast",
     "Rubber duck squeaks",
@@ -787,7 +787,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Rural countryside beautiful",
     "Rush hour traffic",
     "Rust never sleeps",
-    
+
     // RE sentences
     "Read the book",
     "Ready or not",
@@ -809,7 +809,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Respect your elders",
     "Rest in peace",
     "Result speaks volumes",
-    
+
     // RO sentences
     "Rock and roll",
     "Road trip adventure",
@@ -821,7 +821,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Royal treatment received",
     "Rubber meets road",
     "Run for office",
-    
+
     // WA sentences
     "Walk the dog",
     "Wait your turn",
@@ -843,8 +843,8 @@ export const SENTENCE_BANK: SentenceBank = {
     "Well done today",
     "West coast trip",
     "What time now",
-    
-    // WO sentences  
+
+    // WO sentences
     "Work hard today",
     "World peace hope",
     "Worry about nothing",
@@ -855,12 +855,12 @@ export const SENTENCE_BANK: SentenceBank = {
     "Word spreads fast",
     "Worse things happen",
     "Worship service starts",
-    
+
     // N sentences (standalone)
     "An apple day",
     "In the house",
     "On the table",
-    "Can you help", 
+    "Can you help",
     "Run and play",
     "Sun and moon",
     "Fun and games",
@@ -868,7 +868,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "Ten green bottles",
     "When we meet",
   ],
-  
+
   medium: [
     // Continue with medium sentences containing specific characters...
     "The weather is absolutely beautiful today and everyone should take advantage of it",
@@ -902,7 +902,7 @@ export const SENTENCE_BANK: SentenceBank = {
     "We discussed the critical importance of recycling with our concerned environmental neighbors",
     "The amazing concert was absolutely incredible and very emotionally inspiring for everyone",
   ],
-  
+
   long: [
     "Every single morning I wake up very early and go for an energizing run through the peaceful neighborhood before having a healthy breakfast with my loving family members",
     "The magnificent ancient castle stood majestically on top of the steep hill, overlooking the charming small village where many generations of families had lived peacefully for countless centuries",
@@ -914,5 +914,5 @@ export const SENTENCE_BANK: SentenceBank = {
     "The cooking class taught us how to prepare traditional dishes from various countries, including techniques for selecting fresh ingredients and balancing flavors perfectly",
     "As the seasons changed from autumn to winter, the forest transformed into a magical wonderland covered in snow, creating breathtaking scenery that attracted photographers from around the world",
     "The research team worked tirelessly for months to develop a new medicine that could help millions of patients recover faster from serious illnesses while reducing harmful side effects significantly",
-  ]
+  ],
 };

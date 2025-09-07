@@ -21,7 +21,7 @@ export function ContentDisplay({ contentItem }: ContentDisplayProps) {
       // Find the character by ID from all unlocked characters
       const allCharacters = getUnlockedCharacters();
       const character = allCharacters.find(
-        (char) => char.id === contentItem.characterId
+        (char) => char.id === contentItem.characterId,
       );
       if (character) {
         PronunciationService.pronounceCharacter(character.character);
@@ -30,7 +30,7 @@ export function ContentDisplay({ contentItem }: ContentDisplayProps) {
   };
 
   const handleSentenceComplete = (
-    score: "perfect" | "almost" | "not-quite"
+    score: "perfect" | "almost" | "not-quite",
   ) => {
     // Manually trigger the feedback system based on our smart editor score
 
@@ -143,7 +143,6 @@ export function ContentDisplay({ contentItem }: ContentDisplayProps) {
             <PlayButton onClick={handlePronunciation} size="medium" />
           )}
         </div>
-
       </div>
     );
   }

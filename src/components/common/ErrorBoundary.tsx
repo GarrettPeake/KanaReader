@@ -1,4 +1,4 @@
-import { Component, type ErrorInfo, type ReactNode } from 'react';
+import { Component, type ErrorInfo, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -20,29 +20,31 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
+    console.error("Error caught by boundary:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{
-          padding: '2rem',
-          textAlign: 'center',
-          color: '#e74c3c'
-        }}>
+        <div
+          style={{
+            padding: "2rem",
+            textAlign: "center",
+            color: "#e74c3c",
+          }}
+        >
           <h2>Something went wrong!</h2>
           <p>Please refresh the page to try again.</p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             style={{
-              marginTop: '1rem',
-              padding: '0.75rem 1.5rem',
-              background: '#3498db',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
+              marginTop: "1rem",
+              padding: "0.75rem 1.5rem",
+              background: "#3498db",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
             }}
           >
             Refresh Page

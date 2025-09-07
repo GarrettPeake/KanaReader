@@ -1,8 +1,8 @@
-import { useGameContext } from '../../hooks/useGameContext';
-import { ContentDisplay } from './ContentDisplay';
-import { InputField } from './InputField';
-import { FeedbackDisplay } from './FeedbackDisplay';
-import { SuccessScreen } from './SuccessScreen';
+import { useGameContext } from "../../hooks/useGameContext";
+import { ContentDisplay } from "./ContentDisplay";
+import { InputField } from "./InputField";
+import { FeedbackDisplay } from "./FeedbackDisplay";
+import { SuccessScreen } from "./SuccessScreen";
 
 export function MainGame() {
   const { state, getCurrentContentItem } = useGameContext();
@@ -25,7 +25,7 @@ export function MainGame() {
     <div className="game-container">
       <ContentDisplay contentItem={currentContentItem} />
       {/* Only show InputField for questions, not sentences (which now use SmartSentenceEditor) */}
-      {currentContentItem.type === 'question' && <InputField />}
+      {currentContentItem.type === "question" && <InputField />}
       <FeedbackDisplay />
     </div>
   );

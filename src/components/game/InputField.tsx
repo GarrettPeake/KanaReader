@@ -1,47 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useGameContext } from '../../hooks/useGameContext';
+import React, { useState, useEffect, useRef } from "react";
+import { useGameContext } from "../../hooks/useGameContext";
 
 export function InputField() {
-  const { state, dispatch, submitAnswer, advanceToNext, advanceWithoutProgress, getCurrentContentItem, getUnlockedCharacters } = useGameContext();
-  const [localInput, setLocalInput] = useState('');
+  const {
+    state,
+    dispatch,
+    submitAnswer,
+    advanceToNext,
+    advanceWithoutProgress,
+    getCurrentContentItem,
+    getUnlockedCharacters,
+  } = useGameContext();
+  const [localInput, setLocalInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Focus input when component mounts or when we advance to next content
   useEffect(() => {
     const focusInput = () => {
-      if (inputRef.current && !state.showLevelTransition && !state.showLevelSetTransition) {
+      if (
+        inputRef.current &&
+        !state.showLevelTransition &&
+        !state.showLevelSetTransition
+      ) {
         inputRef.current.focus();
       }
     };
-    
+
     // Focus immediately
     focusInput();
-    
+
     // Also focus after delays for iOS compatibility
     const timer1 = setTimeout(focusInput, 100);
     const timer2 = setTimeout(focusInput, 500);
-    
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
     };
-  }, [state.currentContentIndex, state.showLevelTransition, state.showLevelSetTransition]);
+  }, [
+    state.currentContentIndex,
+    state.showLevelTransition,
+    state.showLevelSetTransition,
+  ]);
 
   // Additional focus on component mount
   useEffect(() => {
     const focusInput = () => {
-      if (inputRef.current && !state.showLevelTransition && !state.showLevelSetTransition) {
+      if (
+        inputRef.current &&
+        !state.showLevelTransition &&
+        !state.showLevelSetTransition
+      ) {
         inputRef.current.focus();
       }
     };
-    
+
     // Focus on mount
     focusInput();
-    
+
     // Also try after delays for iOS compatibility
     const timer1 = setTimeout(focusInput, 100);
     const timer2 = setTimeout(focusInput, 500);
-    
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
@@ -58,15 +78,16 @@ export function InputField() {
 
       // Check if the touch target is part of a modal, overlay, or interactive element
       const target = e.target as Element;
-      if (target && (
-        target.closest('.transition-overlay') ||
-        target.closest('.side-menu') ||
-        target.closest('.menu-overlay') ||
-        target.closest('.menu-toggle') ||
-        target.closest('button') ||
-        target.closest('a') ||
-        target.closest('input')
-      )) {
+      if (
+        target &&
+        (target.closest(".transition-overlay") ||
+          target.closest(".side-menu") ||
+          target.closest(".menu-overlay") ||
+          target.closest(".menu-toggle") ||
+          target.closest("button") ||
+          target.closest("a") ||
+          target.closest("input"))
+      ) {
         return; // Let normal touch behavior work for interactive elements
       }
 
@@ -79,11 +100,13 @@ export function InputField() {
 
     // Only add listener when not in transitions
     if (!state.showLevelTransition && !state.showLevelSetTransition) {
-      document.addEventListener('touchstart', handleTouchStart, { passive: false });
+      document.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
     }
 
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener("touchstart", handleTouchStart);
     };
   }, [state.showLevelTransition, state.showLevelSetTransition]);
 
@@ -94,25 +117,25 @@ export function InputField() {
 
   // Clear input when advancing
   useEffect(() => {
-    if (state.currentContentIndex === 0 && state.userInput === '') {
-      setLocalInput('');
+    if (state.currentContentIndex === 0 && state.userInput === "") {
+      setLocalInput("");
     }
   }, [state.currentContentIndex, state.userInput]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setLocalInput(value);
-    dispatch({ type: 'SET_USER_INPUT', payload: value });
-    
+    dispatch({ type: "SET_USER_INPUT", payload: value });
+
     // Check for auto-submit
     const currentContent = getCurrentContentItem();
     if (currentContent && currentContent.acceptedAnswers && value.trim()) {
       // Check if the current input matches any accepted answer
       const normalizedInput = value.trim().toLowerCase();
-      const isCorrect = currentContent.acceptedAnswers.some(answer => 
-        answer.toLowerCase().trim() === normalizedInput
+      const isCorrect = currentContent.acceptedAnswers.some(
+        (answer) => answer.toLowerCase().trim() === normalizedInput,
       );
-      
+
       if (isCorrect) {
         // Auto-submit the correct answer
         setTimeout(() => {
@@ -121,11 +144,11 @@ export function InputField() {
       }
     }
   };
-  
+
   const handleAutoSubmit = (answer: string) => {
     // Submit the answer and get immediate result
     const isCorrect = submitAnswer(answer);
-    
+
     // Auto-advance after showing feedback briefly
     setTimeout(() => {
       if (isCorrect) {
@@ -140,11 +163,11 @@ export function InputField() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (localInput.trim()) {
       // Submit the answer and get immediate result
       const isCorrect = submitAnswer(localInput.trim());
-      
+
       // Auto-advance after showing feedback briefly
       setTimeout(() => {
         if (isCorrect) {
@@ -159,7 +182,7 @@ export function InputField() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit(e as React.FormEvent);
     }
@@ -167,23 +190,25 @@ export function InputField() {
 
   const getPlaceholderText = () => {
     const currentContent = getCurrentContentItem();
-    
+
     if (!currentContent) {
       return "Enter your answer...";
     }
 
-    if (currentContent.type === 'sentence') {
+    if (currentContent.type === "sentence") {
       return "Enter English sentence with romanizations";
     } else {
       // This is a question - need to determine if it's romanization or meaning
       if (currentContent.characterId) {
         // Find the character to get example romanization
         const allCharacters = getUnlockedCharacters();
-        const character = allCharacters.find(char => char.id === currentContent.characterId);
-        
+        const character = allCharacters.find(
+          (char) => char.id === currentContent.characterId,
+        );
+
         if (character) {
           // Check if this is a kanji character (meaning question)
-          if (character.id.startsWith('kanji_')) {
+          if (character.id.startsWith("kanji_")) {
             return "Enter English translation";
           } else {
             // Katakana/Hiragana romanization question - use a generic example
@@ -191,13 +216,17 @@ export function InputField() {
           }
         }
       }
-      
+
       return "Enter romanization";
     }
   };
 
   // Don't render during transitions
-  if (state.showLevelTransition || state.showLevelSetTransition || state.isComplete) {
+  if (
+    state.showLevelTransition ||
+    state.showLevelSetTransition ||
+    state.isComplete
+  ) {
     return null;
   }
 

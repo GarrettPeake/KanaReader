@@ -11,7 +11,7 @@ export class QuestionGenerator {
    */
   public generateCurrentCharacterQuestions(
     character: CharacterMapping,
-    count: number
+    count: number,
   ): Question[] {
     const questions: Question[] = [];
     const isKanji = character.id.startsWith("kanji_");
@@ -36,7 +36,7 @@ export class QuestionGenerator {
         questions.push({
           id: this.generateQuestionId(
             "character-to-romanization",
-            character.id
+            character.id,
           ),
           type: "character-to-romanization",
           prompt: character.character,
@@ -52,7 +52,7 @@ export class QuestionGenerator {
         questions.push({
           id: this.generateQuestionId(
             "character-to-romanization",
-            character.id
+            character.id,
           ),
           type: "character-to-romanization",
           prompt: character.character,
@@ -71,7 +71,7 @@ export class QuestionGenerator {
   public generateSpacedRepetitionQuestions(
     previousCharacters: CharacterMapping[],
     count: number,
-    currentLevelIndex: number
+    currentLevelIndex: number,
   ): Question[] {
     if (previousCharacters.length === 0 || count === 0) {
       return [];
@@ -84,7 +84,7 @@ export class QuestionGenerator {
     // More recent characters get more questions (higher probability)
     const weights = this.calculateSpacedRepetitionWeights(
       previousCharacters.length,
-      currentLevelIndex
+      currentLevelIndex,
     );
 
     // Generate questions, avoiding duplicates
@@ -124,7 +124,7 @@ export class QuestionGenerator {
           questions.push({
             id: this.generateQuestionId(
               "character-to-romanization",
-              character.id
+              character.id,
             ),
             type: "character-to-romanization",
             prompt: character.character,
@@ -138,7 +138,7 @@ export class QuestionGenerator {
         questions.push({
           id: this.generateQuestionId(
             "character-to-romanization",
-            character.id
+            character.id,
           ),
           type: "character-to-romanization",
           prompt: character.character,
@@ -156,7 +156,7 @@ export class QuestionGenerator {
    */
   private calculateSpacedRepetitionWeights(
     characterCount: number,
-    currentLevelIndex: number
+    currentLevelIndex: number,
   ): number[] {
     const weights: number[] = [];
 

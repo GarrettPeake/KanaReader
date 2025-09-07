@@ -20,7 +20,7 @@ export class ContentGenerator {
     sentenceBank: SentenceBank,
     levelSetId: string,
     usedCharacters: Set<string> = new Set(),
-    usedSentences: Set<string> = new Set()
+    usedSentences: Set<string> = new Set(),
   ): {
     contentItem: ContentItem | null;
     updatedUsedCharacters: Set<string>;
@@ -37,7 +37,7 @@ export class ContentGenerator {
         sentenceBank,
         levelSetId,
         usedCharacters,
-        usedSentences
+        usedSentences,
       );
     }
 
@@ -60,7 +60,7 @@ export class ContentGenerator {
     sentenceBank: SentenceBank,
     levelSetId: string,
     usedCharacters: Set<string>,
-    usedSentences: Set<string>
+    usedSentences: Set<string>,
   ): {
     contentItem: ContentItem | null;
     updatedUsedCharacters: Set<string>;
@@ -79,7 +79,7 @@ export class ContentGenerator {
         previousCharacters,
         sentenceBank,
         levelSetId,
-        usedSentences
+        usedSentences,
       );
       return {
         contentItem: result,
@@ -91,7 +91,7 @@ export class ContentGenerator {
       const selectedCharacter = this.selectCharacterWithTriangularWeighting(
         allAvailableCharacters,
         currentLevelIndex,
-        usedCharacters
+        usedCharacters,
       );
 
       if (selectedCharacter && !usedCharacters.has(selectedCharacter.id)) {
@@ -99,12 +99,12 @@ export class ContentGenerator {
         const question =
           this.questionGenerator.generateCurrentCharacterQuestions(
             selectedCharacter,
-            1
+            1,
           )[0];
         if (question) {
           const contentItem = this.convertQuestionToContentItem(
             question,
-            `${levelSetId}-question-${contentIndex}`
+            `${levelSetId}-question-${contentIndex}`,
           );
           return {
             contentItem,
@@ -121,7 +121,7 @@ export class ContentGenerator {
         previousCharacters,
         sentenceBank,
         levelSetId,
-        usedSentences
+        usedSentences,
       );
       return {
         contentItem: result,
@@ -140,7 +140,7 @@ export class ContentGenerator {
     previousCharacters: CharacterMapping[],
     sentenceBank: SentenceBank,
     levelSetId: string,
-    usedSentences: Set<string>
+    usedSentences: Set<string>,
   ): ContentItem | null {
     // Only use characters from the current level set (current + previous in this level set)
     const levelSetCharacters = [currentCharacter, ...previousCharacters];
@@ -149,7 +149,7 @@ export class ContentGenerator {
       sentenceBank,
       currentCharacter,
       10, // Get more sentences to choose from
-      "short"
+      "short",
     );
 
     // If no sentences found for this character, return null to prevent infinite loops
@@ -159,7 +159,7 @@ export class ContentGenerator {
 
     // Find an unused sentence
     const availableSentences = sentences.filter(
-      (sentence) => !usedSentences.has(sentence)
+      (sentence) => !usedSentences.has(sentence),
     );
 
     if (availableSentences.length > 0) {
@@ -172,7 +172,7 @@ export class ContentGenerator {
         type: "sentence",
         displayText: TextReplacer.replaceText(
           selectedSentence,
-          levelSetCharacters
+          levelSetCharacters,
         ),
         originalText: selectedSentence,
       };
@@ -185,7 +185,7 @@ export class ContentGenerator {
       type: "sentence",
       displayText: TextReplacer.replaceText(
         selectedSentence,
-        levelSetCharacters
+        levelSetCharacters,
       ),
       originalText: selectedSentence,
     };
@@ -196,7 +196,7 @@ export class ContentGenerator {
    */
   private convertQuestionToContentItem(
     question: Question,
-    id: string
+    id: string,
   ): ContentItem {
     return {
       id,
@@ -213,7 +213,7 @@ export class ContentGenerator {
    */
   public validateContentItem(
     contentItem: ContentItem,
-    userAnswer: string
+    userAnswer: string,
   ): {
     isCorrect: boolean;
     expected: string;
@@ -237,7 +237,7 @@ export class ContentGenerator {
       // Question validation
       const acceptedAnswers = contentItem.acceptedAnswers || [];
       const isCorrect = acceptedAnswers.some(
-        (answer) => answer.toLowerCase().trim() === normalizedAnswer
+        (answer) => answer.toLowerCase().trim() === normalizedAnswer,
       );
 
       // Determine feedback message based on question type
@@ -245,7 +245,9 @@ export class ContentGenerator {
       if (!isCorrect) {
         // Check if this is a meaning question (English words) vs romanization question
         const isEnglishAnswer = acceptedAnswers.some((answer) =>
-          ["one", "two", "three", "four", "five"].includes(answer.toLowerCase())
+          ["one", "two", "three", "four", "five"].includes(
+            answer.toLowerCase(),
+          ),
         );
         feedbackMessage = isEnglishAnswer
           ? `Correct meaning: ${acceptedAnswers.join(" / ")}`
@@ -291,13 +293,13 @@ export class ContentGenerator {
   private selectCharacterWithTriangularWeighting(
     availableCharacters: CharacterMapping[],
     currentLevelIndex: number,
-    usedCharacters: Set<string>
+    usedCharacters: Set<string>,
   ): CharacterMapping | null {
     if (availableCharacters.length === 0) return null;
 
     // Filter out already used characters
     const unusedCharacters = availableCharacters.filter(
-      (char) => !usedCharacters.has(char.id)
+      (char) => !usedCharacters.has(char.id),
     );
     if (unusedCharacters.length === 0) return null;
 
@@ -320,7 +322,7 @@ export class ContentGenerator {
         // This level was selected - find the character at this position
         const selectedCharacterIndex = Math.min(
           levelOffset,
-          unusedCharacters.length - 1
+          unusedCharacters.length - 1,
         );
 
         // If the exact level doesn't have a character, pick the most recent available one

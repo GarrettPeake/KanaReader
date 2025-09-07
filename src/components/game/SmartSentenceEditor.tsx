@@ -37,7 +37,7 @@ export function SmartSentenceEditor({
       const parsedReplacements = SentenceParser.parseReplacements(
         displayText,
         originalText,
-        availableCharacters
+        availableCharacters,
       );
 
       // Convert to our internal format with user interaction state
@@ -48,7 +48,7 @@ export function SmartSentenceEditor({
           isComplete: false,
           isCorrect: false,
           isSkipped: false,
-        })
+        }),
       );
 
       setReplacements(foundReplacements);
@@ -66,13 +66,13 @@ export function SmartSentenceEditor({
         hiddenInputRef.current.focus();
       }
     };
-    
+
     // Focus immediately
     focusInput();
-    
+
     // Also focus after a short delay to ensure it works on iOS
     const timer = setTimeout(focusInput, 100);
-    
+
     return () => clearTimeout(timer);
   }, [currentReplacementIndex, isCompleted, replacements]);
 
@@ -83,14 +83,14 @@ export function SmartSentenceEditor({
         hiddenInputRef.current.focus();
       }
     };
-    
+
     // Focus on mount
     focusInput();
-    
+
     // Also try after delays for iOS compatibility
     const timer1 = setTimeout(focusInput, 100);
     const timer2 = setTimeout(focusInput, 500);
-    
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
@@ -102,15 +102,16 @@ export function SmartSentenceEditor({
     const handleTouchStart = (e: TouchEvent) => {
       // Check if the touch target is part of a modal, overlay, or interactive element
       const target = e.target as Element;
-      if (target && (
-        target.closest('.transition-overlay') ||
-        target.closest('.side-menu') ||
-        target.closest('.menu-overlay') ||
-        target.closest('.menu-toggle') ||
-        target.closest('button') ||
-        target.closest('a') ||
-        target.closest('input')
-      )) {
+      if (
+        target &&
+        (target.closest(".transition-overlay") ||
+          target.closest(".side-menu") ||
+          target.closest(".menu-overlay") ||
+          target.closest(".menu-toggle") ||
+          target.closest("button") ||
+          target.closest("a") ||
+          target.closest("input"))
+      ) {
         return; // Let normal touch behavior work for interactive elements
       }
 
@@ -123,11 +124,13 @@ export function SmartSentenceEditor({
 
     // Only add listener when not completed (sentence questions don't have transition state access)
     if (!isCompleted) {
-      document.addEventListener('touchstart', handleTouchStart, { passive: false });
+      document.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
     }
 
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener("touchstart", handleTouchStart);
     };
   }, [isCompleted]);
 
@@ -173,10 +176,10 @@ export function SmartSentenceEditor({
     }
 
     setReplacements(newReplacements);
-    
+
     // Clear hidden input and maintain focus
     if (hiddenInputRef.current) {
-      hiddenInputRef.current.value = '';
+      hiddenInputRef.current.value = "";
       hiddenInputRef.current.focus();
     }
   };
@@ -251,7 +254,7 @@ export function SmartSentenceEditor({
         parts.push(
           <span key={`text-${index}`} style={{ whiteSpace: "pre-wrap" }}>
             {displayText.slice(lastIndex, replacement.startIndex)}
-          </span>
+          </span>,
         );
       }
 
@@ -293,7 +296,7 @@ export function SmartSentenceEditor({
       parts.push(
         <span key={`replacement-${index}`} style={replacementStyle}>
           {replacementContent}
-        </span>
+        </span>,
       );
 
       lastIndex = replacement.endIndex;
@@ -304,7 +307,7 @@ export function SmartSentenceEditor({
       parts.push(
         <span key="text-end" style={{ whiteSpace: "pre-wrap" }}>
           {displayText.slice(lastIndex)}
-        </span>
+        </span>,
       );
     }
 
@@ -363,16 +366,16 @@ export function SmartSentenceEditor({
           {replacements.length}
         </div>
       )}
-      
+
       {/* Hidden input for mobile keyboard - tap anywhere to focus */}
       <input
         ref={hiddenInputRef}
         type="text"
         style={{
-          position: 'absolute',
-          left: '-9999px',
+          position: "absolute",
+          left: "-9999px",
           opacity: 0,
-          pointerEvents: 'none'
+          pointerEvents: "none",
         }}
         placeholder="Type here for keyboard input"
         onChange={(e) => {
@@ -385,10 +388,10 @@ export function SmartSentenceEditor({
           }
         }}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') {
+          if (e.key === "Enter") {
             e.preventDefault();
             handleSkipReplacement();
-          } else if (e.key === 'Backspace') {
+          } else if (e.key === "Backspace") {
             e.preventDefault();
             handleBackspace();
           }

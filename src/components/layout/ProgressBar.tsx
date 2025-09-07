@@ -1,4 +1,4 @@
-import { useGameContext } from '../../hooks/useGameContext';
+import { useGameContext } from "../../hooks/useGameContext";
 
 export function ProgressBar() {
   const { getProgressInfo } = useGameContext();
@@ -16,38 +16,40 @@ export function ProgressBar() {
           {progress.currentLevelProgress.levelName}
         </span>
         <div className="progress-visual">
-          <div 
+          <div
             className="progress-fill"
-            style={{ 
+            style={{
               width: `${calculatePercentage(
-                progress.currentLevelProgress.completed, 
-                progress.currentLevelProgress.total
-              )}%` 
+                progress.currentLevelProgress.completed,
+                progress.currentLevelProgress.total,
+              )}%`,
             }}
           />
         </div>
         <span className="progress-text">
-          {progress.currentLevelProgress.completed}/{progress.currentLevelProgress.total}
+          {progress.currentLevelProgress.completed}/
+          {progress.currentLevelProgress.total}
         </span>
       </div>
-      
+
       <div className="progress-item">
         <span className="progress-label">
           {progress.levelSetProgress.setName}
         </span>
         <div className="progress-visual">
-          <div 
+          <div
             className="progress-fill"
-            style={{ 
+            style={{
               width: `${calculatePercentage(
-                progress.levelSetProgress.completed, 
-                progress.levelSetProgress.total
-              )}%` 
+                progress.levelSetProgress.completed,
+                progress.levelSetProgress.total,
+              )}%`,
             }}
           />
         </div>
         <span className="progress-text">
-          {progress.levelSetProgress.completed}/{progress.levelSetProgress.total}
+          {progress.levelSetProgress.completed}/
+          {progress.levelSetProgress.total}
         </span>
       </div>
     </div>

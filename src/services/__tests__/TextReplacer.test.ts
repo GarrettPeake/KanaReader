@@ -64,13 +64,13 @@ describe("TextReplacer", () => {
 
   test("should check if sentence contains target romanizations", () => {
     expect(TextReplacer.hasTargetRomanizations("I have a cat", ["a"])).toBe(
-      true
+      true,
     );
     expect(TextReplacer.hasTargetRomanizations("I have a cat", ["x"])).toBe(
-      false
+      false,
     );
     expect(TextReplacer.hasTargetRomanizations("I can do it", ["ca"])).toBe(
-      true
+      true,
     ); // 'ca' in 'can'
     expect(TextReplacer.hasTargetRomanizations("Apple pie", ["a"])).toBe(true); // 'a' in 'Apple'
   });

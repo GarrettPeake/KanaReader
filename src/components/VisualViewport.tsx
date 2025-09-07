@@ -50,7 +50,7 @@ export const VisualViewport: React.FC<VisualViewportProps> = ({
   }, []);
 
   const ElementComponent = Element as any;
-  
+
   return (
     <ElementComponent ref={ref} style={{ ...style, ...viewport }} {...props}>
       {children}

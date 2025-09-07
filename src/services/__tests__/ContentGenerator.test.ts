@@ -24,13 +24,13 @@ describe("ContentGenerator", () => {
     // Test sentence validation
     const sentenceResult = generator.validateContentItem(
       sentenceItem,
-      "Hello world"
+      "Hello world",
     );
     expect(sentenceResult.isCorrect).toBe(true);
 
     const wrongSentenceResult = generator.validateContentItem(
       sentenceItem,
-      "Wrong answer"
+      "Wrong answer",
     );
     expect(wrongSentenceResult.isCorrect).toBe(false);
 
@@ -40,7 +40,7 @@ describe("ContentGenerator", () => {
 
     const wrongQuestionResult = generator.validateContentItem(
       questionItem,
-      "b"
+      "b",
     );
     expect(wrongQuestionResult.isCorrect).toBe(false);
   });

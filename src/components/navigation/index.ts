@@ -1,2 +1,2 @@
-export * from './SideMenu';
-export * from './CharacterTable';
+export * from "./SideMenu";
+export * from "./CharacterTable";

@@ -3,16 +3,16 @@ import type { CharacterMapping } from "../types";
 export class TextReplacer {
   static replaceText(
     sentence: string,
-    unlockedCharacters: CharacterMapping[]
+    unlockedCharacters: CharacterMapping[],
   ): string {
     let result = sentence;
 
     // Separate kanji from other characters for different replacement strategies
     const kanjiMappings = unlockedCharacters.filter((mapping) =>
-      mapping.id.startsWith("kanji_")
+      mapping.id.startsWith("kanji_"),
     );
     const otherMappings = unlockedCharacters.filter(
-      (mapping) => !mapping.id.startsWith("kanji_")
+      (mapping) => !mapping.id.startsWith("kanji_"),
     );
 
     // Process kanji with word boundary matching first
@@ -21,7 +21,7 @@ export class TextReplacer {
         (mapping.translations || []).map((translation) => ({
           romanization: translation,
           character: mapping.character,
-        }))
+        })),
       )
       .sort((a, b) => b.romanization.length - a.romanization.length);
 
@@ -38,7 +38,7 @@ export class TextReplacer {
         mapping.romanizations.map((romanization) => ({
           romanization,
           character: mapping.character,
-        }))
+        })),
       )
       .sort((a, b) => b.romanization.length - a.romanization.length);
 
@@ -55,7 +55,7 @@ export class TextReplacer {
     sentence: string,
     romanizations: string[],
     isKanji: boolean = false,
-    translations?: string[]
+    translations?: string[],
   ): boolean {
     // Check if the sentence contains any of the target romanizations or translations
     const lowerSentence = sentence.toLowerCase();

@@ -34,7 +34,7 @@ describe("SentenceSelector", () => {
       mockSentenceBank,
       mockCharacter,
       2,
-      "short"
+      "short",
     );
 
     expect(result.length).toBeGreaterThan(0);
@@ -48,7 +48,7 @@ describe("SentenceSelector", () => {
       mockSentenceBank,
       mockCharacter,
       2,
-      "short"
+      "short",
     );
 
     expect(result.length).toBeLessThanOrEqual(2);
@@ -66,7 +66,7 @@ describe("SentenceSelector", () => {
       mockSentenceBank,
       mockCharacterRare,
       5,
-      "short"
+      "short",
     );
 
     // Should return empty or very few results since 'xyz' doesn't appear

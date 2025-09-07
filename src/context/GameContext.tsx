@@ -28,7 +28,7 @@ interface GameContextType {
 
 /* eslint-disable react-refresh/only-export-components */
 export const GameContext = createContext<GameContextType | undefined>(
-  undefined,
+  undefined
 );
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
@@ -53,7 +53,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // Update level metadata when level changes
   useEffect(() => {
     const totalQuestions = contentGenerator.calculateQuestionsPerLevel(
-      state.currentCharacterIndex,
+      state.currentCharacterIndex
     );
     dispatch({
       type: "UPDATE_LEVEL_METADATA",
@@ -116,7 +116,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const unlockedCharacters = getUnlockedCharacters();
     const previousCharacters = currentLevelSet.characterMappings.slice(
       0,
-      state.currentCharacterIndex,
+      state.currentCharacterIndex
     );
 
     // Use the new generateContentItemAtIndex method
@@ -129,7 +129,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       SENTENCE_BANK,
       state.currentLevelSetId,
       state.usedCharacters,
-      state.usedSentences,
+      state.usedSentences
     );
 
     // Update the current content item
@@ -146,10 +146,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   };
 
   const getUnlockedCharacters = (): CharacterMapping[] => {
-    const allCharacters = LEVEL_SETS.flatMap((set) => set.characterMappings);
+    const currentLevelSet = LEVEL_SETS.find(
+      (set) => set.id === state.currentLevelSetId
+    );
+    const allCharacters = currentLevelSet?.characterMappings;
     return Array.from(state.unlockedCharacters)
-      .map((id) => allCharacters.find((char) => char.id === id))
-      .filter((char): char is CharacterMapping => char !== undefined);
+      .map((id) => allCharacters?.find((char) => char.id === id))
+      .filter((char) => char !== undefined);
   };
 
   const getProgressInfo = (): ProgressInfo => {
@@ -170,7 +173,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         completed: Array.from(state.completedLevels).length,
         total: LEVEL_SETS.reduce(
           (total, set) => total + Math.max(set.characterMappings.length, 1),
-          0,
+          0
         ),
       },
     };
@@ -182,7 +185,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     const validation = contentGenerator.validateContentItem(
       contentItem,
-      answer,
+      answer
     );
 
     dispatch({
@@ -218,7 +221,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       ) {
         // Current level set complete
         const currentSetIndex = LEVEL_SETS.findIndex(
-          (set) => set.id === state.currentLevelSetId,
+          (set) => set.id === state.currentLevelSetId
         );
         const nextLevelSet = LEVEL_SETS[currentSetIndex + 1];
 

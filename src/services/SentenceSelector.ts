@@ -12,7 +12,9 @@ export class SentenceSelector {
     const candidateSentences = sentenceBank[preferredLength];
 
     // Filter sentences that contain the target character's romanizations
-    const isKanji = targetCharacter.id.startsWith("kanji_");
+    const isKanji =
+      !targetCharacter.id.startsWith("hi_") &&
+      !targetCharacter.id.startsWith("ka_");
     const validSentences = candidateSentences.filter((sentence) =>
       TextReplacer.hasTargetRomanizations(
         sentence,
@@ -45,6 +47,6 @@ export class SentenceSelector {
     }
 
     // Shuffle the valid sentences and take the requested count
-    return validSentences.slice(0, Math.min(count, validSentences.length));
+    return validSentences
   }
 }

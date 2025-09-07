@@ -37,7 +37,7 @@ export function SmartSentenceEditor({
       const parsedReplacements = SentenceParser.parseReplacements(
         displayText,
         originalText,
-        availableCharacters,
+        availableCharacters
       );
 
       // Convert to our internal format with user interaction state
@@ -48,7 +48,7 @@ export function SmartSentenceEditor({
           isComplete: false,
           isCorrect: false,
           isSkipped: false,
-        }),
+        })
       );
 
       setReplacements(foundReplacements);
@@ -254,7 +254,7 @@ export function SmartSentenceEditor({
         parts.push(
           <span key={`text-${index}`} style={{ whiteSpace: "pre-wrap" }}>
             {displayText.slice(lastIndex, replacement.startIndex)}
-          </span>,
+          </span>
         );
       }
 
@@ -296,7 +296,7 @@ export function SmartSentenceEditor({
       parts.push(
         <span key={`replacement-${index}`} style={replacementStyle}>
           {replacementContent}
-        </span>,
+        </span>
       );
 
       lastIndex = replacement.endIndex;
@@ -307,7 +307,7 @@ export function SmartSentenceEditor({
       parts.push(
         <span key="text-end" style={{ whiteSpace: "pre-wrap" }}>
           {displayText.slice(lastIndex)}
-        </span>,
+        </span>
       );
     }
 

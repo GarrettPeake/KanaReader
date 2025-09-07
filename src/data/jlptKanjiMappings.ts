@@ -1,6 +1,6 @@
 import type { CharacterMapping } from '../types';
 
-// JLPT N5 Kanji Mappings (80 characters)
+// JLPT N5 Kanji Mappings
 export const JLPT_N5_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n5_jin', character: '人', romanizations: ['jin', 'nin', 'hito'], pronunciation: 'hee-toh', translations: ['person', 'human'] },
   { id: 'jlpt_n5_ichi', character: '一', romanizations: ['ichi', 'hitotsu'], pronunciation: 'ee-chee', translations: ['one', 'first'] },
@@ -84,7 +84,7 @@ export const JLPT_N5_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n5_go_noon', character: '午', romanizations: ['go', 'uma'], pronunciation: 'goh', translations: ['noon', 'horse'] },
 ];
 
-// JLPT N4 Kanji Mappings Part 1 (100 characters)
+// JLPT N4 Kanji Mappings Part 1
 export const JLPT_N4_1_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n4_gen', character: '言', romanizations: ['gen', 'gon', 'i', 'koto'], pronunciation: 'koh-toh', translations: ['say', 'word', 'language'] },
   { id: 'jlpt_n4_shu', character: '手', romanizations: ['shu', 'te'], pronunciation: 'teh', translations: ['hand'] },
@@ -188,7 +188,7 @@ export const JLPT_N4_1_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n4_ko', character: '古', romanizations: ['ko', 'furu'], pronunciation: 'foo-roo-ee', translations: ['old', 'ancient'] },
 ];
 
-// JLPT N4 Kanji Mappings Part 2 (70 characters)
+// JLPT N4 Kanji Mappings Part 2
 export const JLPT_N4_2_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n4_shi_begin', character: '始', romanizations: ['shi', 'haji'], pronunciation: 'hah-jee-mah-roo', translations: ['begin', 'start'] },
   { id: 'jlpt_n4_shuu_end', character: '終', romanizations: ['shuu', 'o'], pronunciation: 'oh-wah-roo', translations: ['end', 'finish'] },
@@ -1626,7 +1626,7 @@ export const JLPT_N1_6_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n1_6_a_3', character: '遭', romanizations: ['a', 'sou'], pronunciation: 'ah', translations: ['encounter', 'meet with'] },
   { id: 'jlpt_n1_6_te', character: '掌', romanizations: ['te', 'shou'], pronunciation: 'teh', translations: ['manipulate', 'rule'] },
   { id: 'jlpt_n1_6_nabe', character: '鍋', romanizations: ['nabe', 'ka'], pronunciation: 'nah-beh', translations: ['pot', 'pan'] },
-  { id: 'jlpt_n1_6_yumi', character: '弓', romanizations: ['yumi', 'kyuu'], pronunciation: 'yoo-mee', translations: ['bow', 'bow (archery)'] },
+  { id: 'jlpt_n1_6_yumi', character: '弓', romanizations: ['yumi', 'kyuu'], pronunciation: 'yoo-mee', translations: ['bow'] },
   { id: 'jlpt_n1_6_ka_5', character: '克', romanizations: ['ka', 'koku'], pronunciation: 'kah', translations: ['overcome', 'kindly'] },
   { id: 'jlpt_n1_6_yo_2', character: '据', romanizations: ['yo', 'kyo'], pronunciation: 'yoh', translations: ['set', 'lay a foundation'] },
   { id: 'jlpt_n1_6_kimo_2', character: '胆', romanizations: ['kimo', 'tan'], pronunciation: 'kee-moh', translations: ['gall bladder', 'nerve'] },
@@ -1690,7 +1690,7 @@ export const JLPT_N1_7_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n1_7_mune_2', character: '棟', romanizations: ['mune', 'tou'], pronunciation: 'moo-neh', translations: ['ridgepole', 'ridge'] },
   { id: 'jlpt_n1_7_hora', character: '洞', romanizations: ['hora', 'dou'], pronunciation: 'hoh-rah', translations: ['den', 'cave'] },
   { id: 'jlpt_n1_7_ka_6', character: '狩', romanizations: ['ka', 'shu'], pronunciation: 'kah', translations: ['hunt', 'raid'] },
-  { id: 'jlpt_n1_7_hei', character: '陛', romanizations: ['hei'], pronunciation: 'hay', translations: ['highness', 'steps (of throne)'] },
+  { id: 'jlpt_n1_7_hei', character: '陛', romanizations: ['hei'], pronunciation: 'hay', translations: ['highness', 'steps'] },
   { id: 'jlpt_n1_7_ji', character: '磁', romanizations: ['ji'], pronunciation: 'jee', translations: ['magnet', 'porcelain'] },
   { id: 'jlpt_n1_7_kiyo_2', character: '潔', romanizations: ['kiyo', 'ketsu'], pronunciation: 'kee-yoh', translations: ['undefiled', 'pure'] },
   { id: 'jlpt_n1_7_maku', character: '膜', romanizations: ['maku'], pronunciation: 'mah-koo', translations: ['membrane', 'film'] },
@@ -1718,7 +1718,7 @@ export const JLPT_N1_7_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n1_7_heri', character: '謙', romanizations: ['heri', 'ken'], pronunciation: 'heh-ree', translations: ['self-effacing', 'humble'] },
   { id: 'jlpt_n1_7_tama', character: '珠', romanizations: ['tama', 'shu'], pronunciation: 'tah-mah', translations: ['pearl', 'gem'] },
   { id: 'jlpt_n1_7_ta', character: '蓄', romanizations: ['ta', 'chiku'], pronunciation: 'tah', translations: ['amass', 'raise'] },
-  { id: 'jlpt_n1_7_hira_2', character: '拓', romanizations: ['hira', 'taku'], pronunciation: 'hee-rah', translations: ['clear (the land)', 'open up'] },
+  { id: 'jlpt_n1_7_hira_2', character: '拓', romanizations: ['hira', 'taku'], pronunciation: 'hee-rah', translations: ['clear', 'open up'] },
   { id: 'jlpt_n1_7_tsuzumi', character: '鼓', romanizations: ['tsuzumi', 'ko'], pronunciation: 'tsoo-zoo-mee', translations: ['drum', 'beat'] },
   { id: 'jlpt_n1_7_iki', character: '粋', romanizations: ['iki', 'sui'], pronunciation: 'ee-kee', translations: ['chic', 'pure'] },
   { id: 'jlpt_n1_7_jo', character: '尉', romanizations: ['jo'], pronunciation: 'joh', translations: ['military officer', 'jailer'] },
@@ -1862,7 +1862,7 @@ export const JLPT_N1_8_KANJI: CharacterMapping[] = [
 
 export const JLPT_N1_9_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n1_9_hashi', character: '奔', romanizations: ['hashi', 'hon'], pronunciation: 'hah-shee', translations: ['run', 'bustle'] },
-  { id: 'jlpt_n1_9_hitomi', character: '瞳', romanizations: ['hitomi', 'dou'], pronunciation: 'hee-toh-mee', translations: ['pupil (of eye)', 'eye'] },
+  { id: 'jlpt_n1_9_hitomi', character: '瞳', romanizations: ['hitomi', 'dou'], pronunciation: 'hee-toh-mee', translations: ['pupil', 'eye'] },
   { id: 'jlpt_n1_9_kon', character: '昆', romanizations: ['kon'], pronunciation: 'kohn', translations: ['descendants', 'elder brother'] },
   { id: 'jlpt_n1_9_shii', character: '椎', romanizations: ['shii', 'tsui'], pronunciation: 'shee', translations: ['chinquapin', 'mallet'] },
   { id: 'jlpt_n1_9_negai', character: '懇', romanizations: ['negai', 'kon'], pronunciation: 'neh-gah-ee', translations: ['sociable', 'kind'] },
@@ -2128,7 +2128,7 @@ export const JLPT_N1_11_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n1_11_magari', character: '勾', romanizations: ['magari', 'kou'], pronunciation: 'mah-gah-ree', translations: ['arrest', 'seize'] },
   { id: 'jlpt_n1_11_kado', character: '廉', romanizations: ['kado', 'ren'], pronunciation: 'kah-doh', translations: ['honest', 'low price'] },
   { id: 'jlpt_n1_11_arashi_2', character: '礁', romanizations: ['arashi', 'shou'], pronunciation: 'ah-rah-shee', translations: ['reef', 'sunken rock'] },
-  { id: 'jlpt_n1_11_ichi', character: '壱', romanizations: ['ichi'], pronunciation: 'ee-chee', translations: ['one (in documents)', 'I'] },
+  { id: 'jlpt_n1_11_ichi', character: '壱', romanizations: ['ichi'], pronunciation: 'ee-chee', translations: ['one', 'I'] },
   { id: 'jlpt_n1_11_men', character: '麺', romanizations: ['men'], pronunciation: 'mehn', translations: ['noodles', 'wheat flour'] },
   { id: 'jlpt_n1_11_masu', character: '升', romanizations: ['masu', 'shou'], pronunciation: 'mah-soo', translations: ['measuring box', 'rise up'] },
   { id: 'jlpt_n1_11_oro', character: '卸', romanizations: ['oro', 'sho'], pronunciation: 'oh-roh', translations: ['wholesale', 'grated'] },

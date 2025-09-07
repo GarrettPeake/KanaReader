@@ -16,30 +16,6 @@ export function QuestionDisplay({ question }: QuestionDisplayProps) {
     }
   };
 
-  const getDifficultyStyle = (difficulty: number) => {
-    switch (difficulty) {
-      case 1:
-        return {
-          borderColor: 'rgba(104, 211, 145, 0.6)', // Green for easy
-          boxShadow: '0 0 12px rgba(104, 211, 145, 0.3)'
-        };
-      case 2:
-        return {
-          borderColor: 'rgba(237, 137, 54, 0.6)', // Orange for medium
-          boxShadow: '0 0 12px rgba(237, 137, 54, 0.3)'
-        };
-      case 3:
-        return {
-          borderColor: 'rgba(229, 62, 62, 0.6)', // Red for hard
-          boxShadow: '0 0 12px rgba(229, 62, 62, 0.3)'
-        };
-      default:
-        return {};
-    }
-  };
-
-  const difficultyStyles = getDifficultyStyle(question.difficulty);
-
   return (
     <div className="sentence-display" style={{ flexDirection: 'column', gap: '1rem' }}>
       <div 
@@ -62,29 +38,16 @@ export function QuestionDisplay({ question }: QuestionDisplayProps) {
           padding: '1rem 2rem',
           background: 'linear-gradient(135deg, rgba(45, 55, 72, 0.6) 0%, rgba(26, 32, 44, 0.6) 100%)',
           borderRadius: '20px',
-          border: '2px solid rgba(74, 85, 104, 0.3)',
+          border: '2px solid rgba(99, 179, 237, 0.6)', // Blue border
           boxShadow: 
             'inset 4px 4px 8px rgba(20, 24, 35, 0.6), ' +
             'inset -4px -4px 8px rgba(45, 55, 72, 0.8), ' +
-            '4px 4px 12px rgba(20, 24, 35, 0.4)',
-          display: 'inline-block',
-          ...difficultyStyles
+            '4px 4px 12px rgba(20, 24, 35, 0.4), ' +
+            '0 0 12px rgba(99, 179, 237, 0.3)', // Added blue glow
+          display: 'inline-block'
         }}
       >
         {question.prompt}
-      </div>
-      
-      <div 
-        style={{ 
-          fontSize: '0.85rem', 
-          opacity: 0.6, 
-          color: '#718096',
-          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'
-        }}
-      >
-        {question.difficulty === 1 && '⭐ New Character'}
-        {question.difficulty === 2 && '⭐⭐ Review'}
-        {question.difficulty === 3 && '⭐⭐⭐ Challenge'}
       </div>
     </div>
   );

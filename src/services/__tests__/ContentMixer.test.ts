@@ -8,16 +8,14 @@ const mockQuestions: Question[] = [
     type: 'character-to-romanization',
     prompt: 'ア',
     acceptedAnswers: ['a'],
-    characterId: 'ka_a',
-    difficulty: 1
+    characterId: 'ka_a'
   },
   {
     id: 'q2',
     type: 'character-to-romanization',
     prompt: 'イ',
     acceptedAnswers: ['i'],
-    characterId: 'ka_i',
-    difficulty: 2
+    characterId: 'ka_i'
   }
 ];
 

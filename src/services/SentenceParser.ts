@@ -14,7 +14,7 @@ export class SentenceParser {
    */
   static parseReplacements(
     displayText: string, 
-    originalText: string, 
+    _originalText: string, 
     availableCharacters: CharacterMapping[]
   ): SentenceReplacement[] {
     const replacements: SentenceReplacement[] = [];

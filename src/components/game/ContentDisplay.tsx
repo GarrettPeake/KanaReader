@@ -11,7 +11,6 @@ interface ContentDisplayProps {
 export function ContentDisplay({ contentItem }: ContentDisplayProps) {
   const {
     getUnlockedCharacters,
-    submitAnswer,
     advanceToNext,
     advanceWithoutProgress,
     dispatch,
@@ -38,17 +37,13 @@ export function ContentDisplay({ contentItem }: ContentDisplayProps) {
     const isCorrect = score === "perfect" || score === "almost";
 
     let feedbackMessage = "";
-    let feedbackType: "info" | "success" | "error" = "info";
 
     if (score === "perfect") {
       feedbackMessage = "Perfect!";
-      feedbackType = "success";
     } else if (score === "almost") {
       feedbackMessage = "Almost!";
-      feedbackType = "success"; // Still success since they get progress
     } else {
       feedbackMessage = "Not quite!";
-      feedbackType = "error";
     }
 
     // Manually set the feedback state

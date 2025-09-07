@@ -245,7 +245,7 @@ export class ContentGenerator {
     contentIndex: number,
     currentCharacter: CharacterMapping,
     previousCharacters: CharacterMapping[],
-    unlockedCharacters: CharacterMapping[],
+    _unlockedCharacters: CharacterMapping[],
     currentLevelIndex: number,
     sentenceBank: SentenceBank,
     levelSetId: string,

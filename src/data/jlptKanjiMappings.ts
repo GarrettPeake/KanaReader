@@ -262,10 +262,6 @@ export const JLPT_N4_2_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n4_ben', character: '勉', romanizations: ['ben', 'tsuto'], pronunciation: 'ben', translations: ['diligence', 'study'] },
 ];
 
-// Continue with N3, N2, and N1 levels...
-// Due to space constraints, I'll provide the structure for the remaining levels
-// Each would follow the same detailed format with proper romanizations, pronunciations, and translations
-
 export const JLPT_N3_1_KANJI: CharacterMapping[] = [
   { id: 'jlpt_n3_gou', character: '合', romanizations: ['gou', 'a', 'awa'], pronunciation: 'ah-oo', translations: ['fit', 'suit', 'join'] },
   { id: 'jlpt_n3_bu', character: '部', romanizations: ['bu', 'be'], pronunciation: 'boo', translations: ['part', 'section', 'department'] },

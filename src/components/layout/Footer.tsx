@@ -1,4 +1,4 @@
-import { ProgressBar } from './ProgressBar';
+import { ProgressBar } from "./ProgressBar";
 
 export function Footer() {
   return (

@@ -11,7 +11,7 @@ export class PronunciationService {
 
       const loadVoices = () => {
         const voices = speechSynthesis.getVoices();
-        this.jpVoice = voices.find(v => v.lang.startsWith("ja")) || null;
+        this.jpVoice = voices.find((v) => v.lang.startsWith("ja")) || null;
         this.voicesLoaded = true;
         resolve();
       };
@@ -19,7 +19,9 @@ export class PronunciationService {
       if (speechSynthesis.getVoices().length > 0) {
         loadVoices();
       } else {
-        speechSynthesis.addEventListener('voiceschanged', loadVoices, { once: true });
+        speechSynthesis.addEventListener("voiceschanged", loadVoices, {
+          once: true,
+        });
       }
     });
   }
@@ -28,7 +30,7 @@ export class PronunciationService {
     await this.initialize();
 
     const utterance = new SpeechSynthesisUtterance(character);
-    
+
     // Try to use Japanese voice if available
     if (this.jpVoice) {
       utterance.voice = this.jpVoice;
@@ -43,10 +45,6 @@ export class PronunciationService {
   }
 
   static isSupported(): boolean {
-    return 'speechSynthesis' in window;
-  }
-
-  static getAvailableJapaneseVoices(): SpeechSynthesisVoice[] {
-    return speechSynthesis.getVoices().filter(v => v.lang.startsWith("ja"));
+    return "speechSynthesis" in window;
   }
 }

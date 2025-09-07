@@ -8,10 +8,45 @@ export function InputField() {
 
   // Focus input when component mounts or when we advance to next content
   useEffect(() => {
-    if (inputRef.current && !state.showLevelTransition && !state.showLevelSetTransition) {
-      inputRef.current.focus();
-    }
+    const focusInput = () => {
+      if (inputRef.current && !state.showLevelTransition && !state.showLevelSetTransition) {
+        inputRef.current.focus();
+      }
+    };
+    
+    // Focus immediately
+    focusInput();
+    
+    // Also focus after delays for iOS compatibility
+    const timer1 = setTimeout(focusInput, 100);
+    const timer2 = setTimeout(focusInput, 500);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, [state.currentContentIndex, state.showLevelTransition, state.showLevelSetTransition]);
+
+  // Additional focus on component mount
+  useEffect(() => {
+    const focusInput = () => {
+      if (inputRef.current && !state.showLevelTransition && !state.showLevelSetTransition) {
+        inputRef.current.focus();
+      }
+    };
+    
+    // Focus on mount
+    focusInput();
+    
+    // Also try after delays for iOS compatibility
+    const timer1 = setTimeout(focusInput, 100);
+    const timer2 = setTimeout(focusInput, 500);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []); // Run once on mount
 
   // Update local input when global state changes
   useEffect(() => {

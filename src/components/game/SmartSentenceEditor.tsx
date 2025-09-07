@@ -59,12 +59,43 @@ export function SmartSentenceEditor({
     parseReplacements();
   }, [displayText, originalText]); // Removed getUnlockedCharacters dependency
 
-  // Focus hidden input for mobile keyboard
+  // Focus input for mobile keyboard immediately and on changes
   useEffect(() => {
-    if (hiddenInputRef.current && !isCompleted) {
-      hiddenInputRef.current.focus();
-    }
+    const focusInput = () => {
+      if (hiddenInputRef.current && !isCompleted) {
+        hiddenInputRef.current.focus();
+      }
+    };
+    
+    // Focus immediately
+    focusInput();
+    
+    // Also focus after a short delay to ensure it works on iOS
+    const timer = setTimeout(focusInput, 100);
+    
+    return () => clearTimeout(timer);
   }, [currentReplacementIndex, isCompleted, replacements]);
+
+  // Additional focus on component mount
+  useEffect(() => {
+    const focusInput = () => {
+      if (hiddenInputRef.current && !isCompleted) {
+        hiddenInputRef.current.focus();
+      }
+    };
+    
+    // Focus on mount
+    focusInput();
+    
+    // Also try after delays for iOS compatibility
+    const timer1 = setTimeout(focusInput, 100);
+    const timer2 = setTimeout(focusInput, 500);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []); // Run once on mount
 
   // Handle keyboard input
   useEffect(() => {

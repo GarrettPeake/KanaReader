@@ -1,0 +1,387 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #e2e8f0;
+  background: #2d3748;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #2d3748;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 120px; /* Space for floating footer */
+}
+
+.game-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sentence-display {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: transparent;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  line-break: strict;
+  hyphens: none;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  word-spacing: 0.3em;
+  white-space: normal;
+  color: #e2e8f0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+}
+
+.input-container {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.text-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  background: #2d3748;
+  color: #e2e8f0;
+  border: 1px solid rgba(74, 85, 104, 0.3);
+  border-radius: 16px;
+  box-shadow: 
+    inset 4px 4px 8px rgba(20, 24, 35, 0.6),
+    inset -4px -4px 8px rgba(45, 55, 72, 0.8);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.text-input:focus {
+  border-color: rgba(74, 85, 104, 0.3);
+  box-shadow: 
+    inset 4px 4px 8px rgba(20, 24, 35, 0.6),
+    inset -4px -4px 8px rgba(45, 55, 72, 0.8);
+  outline: none;
+}
+
+.feedback {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.feedback.success {
+  background: linear-gradient(135deg, #22543d 0%, #1a202c 100%);
+  color: #68d391;
+  border: 1px solid rgba(104, 211, 145, 0.3);
+  box-shadow: 
+    inset 3px 3px 6px rgba(20, 24, 35, 0.6),
+    inset -3px -3px 6px rgba(45, 55, 72, 0.8);
+}
+
+.feedback.error {
+  background: linear-gradient(135deg, #742a2a 0%, #1a202c 100%);
+  color: #fc8181;
+  border: 1px solid rgba(252, 129, 129, 0.3);
+  box-shadow: 
+    inset 3px 3px 6px rgba(20, 24, 35, 0.6),
+    inset -3px -3px 6px rgba(45, 55, 72, 0.8);
+}
+
+.feedback.info {
+  background: linear-gradient(135deg, #2a4365 0%, #1a202c 100%);
+  color: #63b3ed;
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  box-shadow: 
+    inset 3px 3px 6px rgba(20, 24, 35, 0.6),
+    inset -3px -3px 6px rgba(45, 55, 72, 0.8);
+}
+
+.btn {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  color: #e2e8f0;
+  border: 1px solid rgba(74, 85, 104, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 
+    4px 4px 8px rgba(20, 24, 35, 0.6),
+    -4px -4px 8px rgba(74, 85, 104, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #63b3ed 0%, #4299e1 100%);
+  transform: translateY(-1px);
+  box-shadow: 
+    6px 6px 12px rgba(20, 24, 35, 0.7),
+    -6px -6px 12px rgba(74, 85, 104, 0.4);
+}
+
+.btn:disabled {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 
+    inset 2px 2px 4px rgba(20, 24, 35, 0.6),
+    inset -2px -2px 4px rgba(45, 55, 72, 0.8);
+}
+
+.header {
+  background: transparent;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  color: #e2e8f0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, #63b3ed, #4299e1, #3182ce, #805ad5);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease-in-out infinite;
+  text-shadow: none;
+  letter-spacing: -0.025em;
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.header h1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #63b3ed, #4299e1, #3182ce, #805ad5);
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease-in-out infinite;
+  filter: blur(8px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.menu-toggle {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.menu-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  background: transparent;
+  padding: 1rem;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progress-label {
+  min-width: 120px;
+  font-weight: 500;
+  color: #e2e8f0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.progress-visual {
+  flex: 1;
+  height: 16px;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 
+    inset 3px 3px 6px rgba(20, 24, 35, 0.8),
+    inset -3px -3px 6px rgba(45, 55, 72, 0.6);
+  border: 1px solid rgba(74, 85, 104, 0.2);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #63b3ed 0%, #4299e1 50%, #3182ce 100%);
+  border-radius: 16px;
+  transition: width 0.3s ease;
+  box-shadow: 
+    0 0 12px rgba(99, 179, 237, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  min-width: 60px;
+  text-align: right;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100vh;
+  background: #2d3748;
+  box-shadow: 8px 0 16px rgba(0, 0, 0, 0.4);
+  border-right: 1px solid rgba(74, 85, 104, 0.3);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%);
+  backdrop-filter: blur(8px);
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  text-align: center;
+}
+
+.transition-character {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  color: #63b3ed;
+  text-shadow: 
+    0 0 20px rgba(99, 179, 237, 0.6),
+    4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.transition-info {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.success-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.success-checkmark {
+  font-size: 6rem;
+  color: #68d391;
+  margin-bottom: 2rem;
+  text-shadow: 
+    0 0 20px rgba(104, 211, 145, 0.6),
+    4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Additional neumorphic styles for side menu hover effects */
+.side-menu button:hover {
+  transform: translateY(-1px);
+}
+
+.side-menu .reset-button:hover {
+  background: linear-gradient(135deg, #fc8181 0%, #e53e3e 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 
+    4px 4px 8px rgba(20, 24, 35, 0.7),
+    -4px -4px 8px rgba(74, 85, 104, 0.4) !important;
+}

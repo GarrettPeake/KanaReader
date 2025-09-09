@@ -28,7 +28,7 @@ export function SmartSentenceEditor({
   const [isCompleted, setIsCompleted] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
   const hiddenInputRef = useRef<HTMLInputElement>(null);
-  const { getUnlockedCharacters } = useGameContext();
+  const { state, getUnlockedCharacters } = useGameContext();
 
   // Parse the sentence to find replacements
   useEffect(() => {
@@ -137,7 +137,14 @@ export function SmartSentenceEditor({
   // Handle keyboard input
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isCompleted || currentReplacementIndex >= replacements.length) return;
+      // Don't act on input when shown under transitions or if complete
+      if (
+        isCompleted ||
+        currentReplacementIndex >= replacements.length ||
+        state.showLevelSetTransition ||
+        state.showLevelSetTransition
+      )
+        return;
 
       const currentReplacement = replacements[currentReplacementIndex];
       if (!currentReplacement || currentReplacement.isComplete) return;
@@ -158,7 +165,13 @@ export function SmartSentenceEditor({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [replacements, currentReplacementIndex, isCompleted]);
+  }, [
+    replacements,
+    currentReplacementIndex,
+    isCompleted,
+    state.showLevelSetTransition,
+    state.showLevelSetTransition,
+  ]);
 
   const handleCharacterInput = (char: string) => {
     const newReplacements = [...replacements];

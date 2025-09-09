@@ -69,10 +69,12 @@ function AppContent() {
     <VisualViewport className="app">
       <Header />
       <main className="main-content">
-        <MainGame />
-        <SideMenu />
-        <LevelTransition />
-        <LevelSetTransition />
+        {!state.showLevelSetTransition && !state.showLevelTransition ? (
+          <MainGame />
+        ) : null}
+        {state.menuOpen ? <SideMenu /> : null}
+        {state.showLevelTransition ? <LevelTransition /> : null}
+        {state.showLevelSetTransition ? <LevelSetTransition /> : null}
       </main>
       <Footer />
     </VisualViewport>

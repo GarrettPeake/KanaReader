@@ -92,7 +92,7 @@ describe("Sentence Bank Coverage", () => {
       console.error("Failed characters:");
       failedCharacters.forEach(({ character, availableSentences }) => {
         console.error(
-          `${character.character} => ${character.translations.join(
+          `${character.character} => ${character.translations!.join(
             ", "
           )} ${availableSentences}/2`
         );
@@ -123,7 +123,7 @@ describe("Sentence Bank Coverage", () => {
 
       // Get all unique translations from all characters
       for (const character of ALL_JLPT_CHARACTERS) {
-        for (const translation of character.translations) {
+        for (const translation of character.translations!) {
           uniqueTranslations.add(translation);
         }
       }
@@ -192,7 +192,7 @@ describe("Sentence Bank Coverage", () => {
     // Get all unique translations
     const allTranslations = new Set<string>();
     for (const character of ALL_JLPT_CHARACTERS) {
-      for (const translation of character.translations) {
+      for (const translation of character.translations!) {
         allTranslations.add(translation);
       }
     }

@@ -203,7 +203,12 @@ export function SmartSentenceEditor({
 
     if (!current || current.isComplete) return;
 
-    current.userInput = current.userInput.slice(0, -1);
+    console.log(current.userInput);
+    current.userInput = current.userInput.substring(
+      0,
+      current.userInput.length - 1
+    );
+    console.log(current.userInput);
     setReplacements(newReplacements);
   };
 
@@ -391,24 +396,6 @@ export function SmartSentenceEditor({
           pointerEvents: "none",
         }}
         placeholder="Type here for keyboard input"
-        onChange={(e) => {
-          const inputValue = e.target.value;
-          if (inputValue && inputValue.length > 0) {
-            const lastChar = inputValue.slice(-1).toLowerCase();
-            if (/[a-zA-Z]/.test(lastChar)) {
-              handleCharacterInput(lastChar);
-            }
-          }
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            handleSkipReplacement();
-          } else if (e.key === "Backspace") {
-            e.preventDefault();
-            handleBackspace();
-          }
-        }}
         autoComplete="off"
         autoCapitalize="off"
         spellCheck="false"
